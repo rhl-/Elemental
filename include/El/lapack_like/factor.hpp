@@ -12,6 +12,7 @@
 
 #include "El/lapack_like/factor/ldl/sparse/symbolic.hpp"
 #include "El/lapack_like/factor/ldl/sparse/numeric.hpp"
+#include "El/lapack_like/factor/smith/smith.hpp"
 
 namespace El {
 

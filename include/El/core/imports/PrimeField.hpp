@@ -10,7 +10,7 @@
 #ifndef EL_IMPORTS_PRIME_FIELDS_HPP
 #define EL_IMPORTS_PRIME_FIELDS_HPP
 #include <cstddef>
-
+#include <type_traits>
 namespace El {
 
 namespace detail {
@@ -70,12 +70,12 @@ namespace detail {
 } //end namespace detail
 
 
-template< std::size_t _prime>
+template< std::size_t _prime> //requires is_prime(_prime)
 class PrimeField{
 private:
     typedef PrimeField< _prime> Self;
 public:
-    static std::size_t prime = _prime;
+    static constexpr std::size_t prime = _prime;
 
     PrimeField(){}
 
@@ -95,7 +95,7 @@ public:
     template< typename T>
     std::size_t get_number_data(const T & rhs) const { return mod( rhs); }
 
-    std::size_t get_number_data( const Self& rhs) const { return mod( rhs.x()); }
+    std::size_t get_number_data( const Self& rhs) const { return mod( rhs.x); }
 
     template< typename T>
     Self& operator=( const T& from){
@@ -158,7 +158,7 @@ private:
 template< typename Stream, std::size_t N>
 Stream& operator<<( Stream & out, const PrimeField< N> & x ){
     int value = x.get_number_data( x);
-    if( N >2 && value >= N/2.0){ value = -1*(x.prime() -value); }
+    if( N >2 && value >= N/2.0){ value = -1*(N -value); }
     out << value;
     return out;
 }

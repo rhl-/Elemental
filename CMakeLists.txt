@@ -417,7 +417,7 @@ if(EL_HAVE_QT5)
 
   set(EL_C_CPP_FILES "${EL_C_CPP_SOURCE};${EL_MOC_SRC}")
 else()
-  set(EL_C_CPP_FILES "${EL_C_CPP_SOURCE}")
+  set(EL_C_CPP_FILES "${EL_C_CPP_SOURCE}" include/El/lapack_like/factor/smith/smith.hpp)
 endif()
 
 # Handle the header preparation and installation
