@@ -26,17 +26,20 @@ void Multiply
 template<typename T>
 void Multiply
 ( Orientation orientation,
-  T alpha, const Graph& A, const Matrix<T>& X,
-  T beta,                        Matrix<T>& Y );
-
+  T alpha,
+  const DistSparseMatrix<T>& A,
+  const DistMultiVec<T>& X,
+  T beta,
+        DistMultiVec<T>& Y );
 template<typename T>
 void Multiply
 ( Orientation orientation,
   T alpha,
-  const DistGraph& A,
+  const DistSparseMatrix<T>& A,
   const AbstractDistMatrix<T>& X,
   T beta,
         AbstractDistMatrix<T>& Y );
-} //end namespace El
+
+} //end namespace El 
 
 #endif // EL_BLAS3_MULTIPLY_HPP
