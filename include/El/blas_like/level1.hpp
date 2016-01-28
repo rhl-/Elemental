@@ -9,7 +9,6 @@
 #ifndef EL_BLAS1_HPP
 #define EL_BLAS1_HPP
 
-namespace El {
 
 // TODO: More 'Contract' routines, e.g., {Contract,ContractedAxpy},
 //       which sum results over the teams of processes that shared data in the
@@ -20,58 +19,21 @@ namespace El {
 
 // Adjoint
 // =======
-template<typename T>
-void Adjoint( const Matrix<T>& A, Matrix<T>& B );
-template<typename T>
-void Adjoint( const ElementalMatrix<T>& A, ElementalMatrix<T>& B );
-template<typename T>
-void Adjoint( const BlockMatrix<T>& A, BlockMatrix<T>& B );
-template<typename T>
-void Adjoint( const AbstractDistMatrix<T>& A, AbstractDistMatrix<T>& B );
-template<typename T>
-void Adjoint( const SparseMatrix<T>& A, SparseMatrix<T>& B );
-template<typename T>
-void Adjoint( const DistSparseMatrix<T>& A, DistSparseMatrix<T>& B );
+#include <El/blas_like/level1/Adjoint.hpp>
+#include <El/blas_like/level1/AdjointAxpy.hpp>
+#include <El/blas_like/level1/AdjointAxpyContract.hpp>
+#include <El/blas_like/level1/AdjointContract.hpp>
 
-// AdjointContract
-// ===============
-template<typename T>
-void AdjointContract
-( const ElementalMatrix<T>& A,
-        ElementalMatrix<T>& B );
-template<typename T>
-void AdjointContract
-( const BlockMatrix<T>& A,
-        BlockMatrix<T>& B );
+// Axpy
+// ====
+#include <El/blas_like/level1/Axpy.hpp>
 
-// AdjointAxpy
-// ===========
-template<typename T,typename S>
-void AdjointAxpy
-( S alpha, const Matrix<T>& X, Matrix<T>& Y );
-template<typename T,typename S>
-void AdjointAxpy
-( S alpha, const SparseMatrix<T>& X, SparseMatrix<T>& Y );
-template<typename T,typename S>
-void AdjointAxpy
-( S alpha, const ElementalMatrix<T>& X, ElementalMatrix<T>& Y );
-template<typename T,typename S>
-void AdjointAxpy
-( S alpha, const BlockMatrix<T>& X, BlockMatrix<T>& Y );
-template<typename T,typename S>
-void AdjointAxpy
-( S alpha, const DistSparseMatrix<T>& X, DistSparseMatrix<T>& Y );
+// AxpyTrapezoid
+// ==========
+#include <El/blas_like/level1/AxpyTrapezoid.hpp>
 
-// AdjointAxpyContract
-// ===================
-template<typename T>
-void AdjointAxpyContract
-( T alpha, const ElementalMatrix<T>& A,
-                 ElementalMatrix<T>& B );
-template<typename T>
-void AdjointAxpyContract
-( T alpha, const BlockMatrix<T>& A,
-                 BlockMatrix<T>& B );
+
+namespace El { 
 
 // AllReduce
 // =========
@@ -81,70 +43,6 @@ void AllReduce
 template<typename T>
 void AllReduce
 ( AbstractDistMatrix<T>& A, mpi::Comm comm, mpi::Op op=mpi::SUM );
-
-// Axpy
-// ====
-template<typename T,typename S>
-void Axpy( S alpha, const Matrix<T>& X, Matrix<T>& Y );
-template<typename T,typename S>
-void Axpy( S alpha, const ElementalMatrix<T>& X, ElementalMatrix<T>& Y );
-template<typename T,typename S>
-void Axpy( S alpha, const BlockMatrix<T>& X, BlockMatrix<T>& Y );
-template<typename T,typename S>
-void Axpy( S alpha, const AbstractDistMatrix<T>& X, AbstractDistMatrix<T>& Y );
-template<typename T,typename S>
-void Axpy( S alpha, const DistMultiVec<T>& X, DistMultiVec<T>& Y );
-template<typename T,typename S>
-void Axpy( S alpha, const SparseMatrix<T>& X, SparseMatrix<T>& Y );
-template<typename T,typename S>
-void Axpy( S alpha, const DistSparseMatrix<T>& X, DistSparseMatrix<T>& Y );
-
-namespace axpy {
-namespace util {
-
-template<typename T>
-void InterleaveMatrixUpdate
-( T alpha, Int localHeight, Int localWidth,
-  const T* A, Int colStrideA, Int rowStrideA,
-        T* B, Int colStrideB, Int rowStrideB );
-template<typename T>
-void UpdateWithLocalData
-( T alpha, const ElementalMatrix<T>& A, DistMatrix<T,STAR,STAR>& B );
-
-} // namespace util
-} // namespace axpy
-
-// AxpyContract
-// ============
-
-template<typename T>
-void AxpyContract
-( T alpha, const ElementalMatrix<T>& A, ElementalMatrix<T>& B );
-template<typename T>
-void AxpyContract
-( T alpha, const BlockMatrix<T>& A, BlockMatrix<T>& B );
-
-// AxpyTrapezoid
-// =============
-template<typename T,typename S>
-void AxpyTrapezoid
-( UpperOrLower uplo, S alpha, const Matrix<T>& X, Matrix<T>& Y, Int offset=0 );
-template<typename T,typename S>
-void AxpyTrapezoid
-( UpperOrLower uplo, S alpha,
-  const ElementalMatrix<T>& X, ElementalMatrix<T>& Y, Int offset=0 );
-template<typename T,typename S>
-void AxpyTrapezoid
-( UpperOrLower uplo, S alpha,
-  const BlockMatrix<T>& X, BlockMatrix<T>& Y, Int offset=0 );
-template<typename T,typename S>
-void AxpyTrapezoid
-( UpperOrLower uplo, S alpha, 
-  const SparseMatrix<T>& X, SparseMatrix<T>& Y, Int offset=0 );
-template<typename T,typename S>
-void AxpyTrapezoid
-( UpperOrLower uplo, S alpha, 
-  const DistSparseMatrix<T>& X, DistSparseMatrix<T>& Y, Int offset=0 );
 
 // Broadcast
 // =========
@@ -440,194 +338,6 @@ template<typename T>
 void Contract( const ElementalMatrix<T>& A, ElementalMatrix<T>& B );
 template<typename T>
 void Contract( const BlockMatrix<T>& A, BlockMatrix<T>& B );
-
-// Copy
-// ====
-
-template<typename T>
-void Copy( const Matrix<T>& A, Matrix<T>& B );
-template<typename S,typename T,typename=EnableIf<CanCast<S,T>>>
-void Copy( const Matrix<S>& A, Matrix<T>& B );
-
-template<typename S,typename T,typename=EnableIf<CanCast<S,T>>>
-void Copy( const ElementalMatrix<S>& A, ElementalMatrix<T>& B );
-
-template<typename S,typename T,typename=EnableIf<CanCast<S,T>>>
-void Copy( const BlockMatrix<S>& A, BlockMatrix<T>& B );
-
-template<typename T>
-void Copy( const AbstractDistMatrix<T>& A, AbstractDistMatrix<T>& B );
-template<typename S,typename T,typename=EnableIf<CanCast<S,T>>>
-void Copy( const AbstractDistMatrix<S>& A, AbstractDistMatrix<T>& B );
-
-template<typename T>
-void CopyFromRoot
-( const Matrix<T>& A, DistMatrix<T,CIRC,CIRC>& B,
-  bool includingViewers=false );
-template<typename T>
-void CopyFromNonRoot( DistMatrix<T,CIRC,CIRC>& B,
-  bool includingViewers=false );
-
-template<typename T>
-void CopyFromRoot
-( const Matrix<T>& A, DistMatrix<T,CIRC,CIRC,BLOCK>& B,
-  bool includingViewers=false );
-template<typename T>
-void CopyFromNonRoot( DistMatrix<T,CIRC,CIRC,BLOCK>& B,
-  bool includingViewers=false );
-
-void Copy( const Graph& A, Graph& B );
-void Copy( const Graph& A, DistGraph& B );
-void Copy( const DistGraph& A, Graph& B );
-void Copy( const DistGraph& A, DistGraph& B );
-
-void CopyFromRoot( const DistGraph& distGraph, Graph& graph );
-void CopyFromNonRoot( const DistGraph& distGraph, int root=0 );
-
-template<typename T>
-void Copy( const SparseMatrix<T>& A, SparseMatrix<T>& B );
-
-template<typename S,typename T,typename=EnableIf<CanCast<S,T>>>
-void Copy( const SparseMatrix<S>& A, SparseMatrix<T>& B );
-
-template<typename S,typename T,typename=EnableIf<CanCast<S,T>>>
-void Copy( const SparseMatrix<S>& A, Matrix<T>& B );
-
-template<typename T>
-void Copy( const DistSparseMatrix<T>& A, DistSparseMatrix<T>& B );
-
-template<typename S,typename T,typename=EnableIf<CanCast<S,T>>>
-void Copy( const DistSparseMatrix<S>& A, DistSparseMatrix<T>& B );
-
-template<typename S,typename T,typename=EnableIf<CanCast<S,T>>>
-void Copy( const DistSparseMatrix<S>& A, AbstractDistMatrix<T>& B );
-
-template<typename T>
-void CopyFromRoot( const DistSparseMatrix<T>& ADist, SparseMatrix<T>& A );
-template<typename T>
-void CopyFromNonRoot( const DistSparseMatrix<T>& ADist, int root=0 );
-
-template<typename T>
-void Copy( const DistMultiVec<T>& A, DistMultiVec<T>& B );
-
-template<typename S,typename T,typename=EnableIf<CanCast<S,T>>>
-void Copy( const DistMultiVec<S>& A, DistMultiVec<T>& B );
-
-template<typename T>
-void Copy( const DistMultiVec<T>& A, AbstractDistMatrix<T>& B );
-template<typename T>
-void Copy( const AbstractDistMatrix<T>& A, DistMultiVec<T>& B );
-template<typename T>
-void CopyFromRoot( const DistMultiVec<T>& XDist, Matrix<T>& X );
-template<typename T>
-void CopyFromNonRoot( const DistMultiVec<T>& XDist, int root=0 );
-
-namespace copy {
-namespace util {
-
-template<typename T>
-void InterleaveMatrix
-( Int height, Int width,
-  const T* A, Int colStrideA, Int rowStrideA,
-        T* B, Int colStrideB, Int rowStrideB );
-
-template<typename T>
-void ColStridedPack
-( Int height, Int width,
-  Int colAlign, Int colStride,
-  const T* A,         Int ALDim,
-        T* BPortions, Int portionSize );
-template<typename T>
-void ColStridedColumPack
-( Int height, 
-  Int colAlign, Int colStride,
-  const T* A, 
-        T* BPortions, Int portionSize );
-template<typename T>
-void ColStridedUnpack
-( Int height, Int width,
-  Int colAlign, Int colStride,
-  const T* APortions, Int portionSize,
-        T* B,         Int BLDim );
-template<typename T>
-void PartialColStridedPack
-( Int height, Int width,
-  Int colAlign, Int colStride,
-  Int colStrideUnion, Int colStridePart, Int colRankPart,
-  Int colShiftA,
-  const T* A,         Int ALDim,
-        T* BPortions, Int portionSize );
-template<typename T>
-void PartialColStridedColumnPack
-( Int height, 
-  Int colAlign, Int colStride,
-  Int colStrideUnion, Int colStridePart, Int colRankPart,
-  Int colShiftA,
-  const T* A,
-        T* BPortions, Int portionSize );
-template<typename T>
-void PartialColStridedUnpack
-( Int height, Int width,
-  Int colAlign, Int colStride,
-  Int colStrideUnion, Int colStridePart, Int colRankPart,
-  Int colShiftB,
-  const T* APortions, Int portionSize,
-        T* B,         Int BLDim );
-template<typename T>
-void PartialColStridedColumnUnpack
-( Int height,
-  Int colAlign, Int colStride,
-  Int colStrideUnion, Int colStridePart, Int colRankPart,
-  Int colShiftB,
-  const T* APortions, Int portionSize,
-        T* B );
-
-template<typename T>
-void RowStridedPack
-( Int height, Int width,
-  Int rowAlign, Int rowStride,
-  const T* A,         Int ALDim,
-        T* BPortions, Int portionSize );
-template<typename T>
-void RowStridedUnpack
-( Int height, Int width,
-  Int rowAlign, Int rowStride,
-  const T* APortions, Int portionSize,
-        T* B,         Int BLDim );
-template<typename T>
-void PartialRowStridedPack
-( Int height, Int width,
-  Int rowAlign, Int rowStride,
-  Int rowStrideUnion, Int rowStridePart, Int rowRankPart,
-  Int rowShiftA,
-  const T* A,         Int ALDim,
-        T* BPortions, Int portionSize );
-template<typename T>
-void PartialRowStridedUnpack
-( Int height, Int width,
-  Int rowAlign, Int rowStride,
-  Int rowStrideUnion, Int rowStridePart, Int rowRankPart,
-  Int rowShiftB,
-  const T* APortions, Int portionSize,
-        T* B,         Int BLDim );
-
-template<typename T>
-void StridedPack
-( Int height, Int width,
-  Int colAlign, Int colStride,
-  Int rowAlign, Int rowStride,
-  const T* A,         Int ALDim,
-        T* BPortions, Int portionSize );
-template<typename T>
-void StridedUnpack
-( Int height, Int width,
-  Int colAlign, Int colStride,
-  Int rowAlign, Int rowStride,
-  const T* APortions, Int portionSize,
-        T* B,         Int BLDim );
-
-} // namespace util
-} // namespace copy
 
 // DiagonalScale
 // =============
@@ -1729,78 +1439,6 @@ template<typename T,typename S>
 void ShiftDiagonal
 ( DistSparseMatrix<T>& A, S alpha, Int offset=0, bool existingDiag=false );
 
-// Transpose
-// =========
-template<typename T>
-void Transpose
-( const Matrix<T>& A,
-        Matrix<T>& B,
-  bool conjugate=false );
-template<typename T>
-void Transpose
-( const ElementalMatrix<T>& A,
-        ElementalMatrix<T>& B,
-  bool conjugate=false );
-template<typename T>
-void Transpose
-( const BlockMatrix<T>& A,
-        BlockMatrix<T>& B,
-  bool conjugate=false );
-template<typename T>
-void Transpose
-( const AbstractDistMatrix<T>& A,
-        AbstractDistMatrix<T>& B,
-  bool conjugate=false );
-template<typename T>
-void Transpose
-( const SparseMatrix<T>& A,
-        SparseMatrix<T>& B,
-  bool conjugate=false );
-template<typename T>
-void Transpose
-( const DistSparseMatrix<T>& A,
-        DistSparseMatrix<T>& B,
-  bool conjugate=false );
-
-// TransposeContract
-// =================
-template<typename T>
-void TransposeContract
-( const ElementalMatrix<T>& A, 
-        ElementalMatrix<T>& B, bool conjugate=false );
-template<typename T>
-void TransposeContract
-( const BlockMatrix<T>& A, 
-        BlockMatrix<T>& B, bool conjugate=false );
-
-// TransposeAxpy
-// =============
-template<typename T,typename S>
-void TransposeAxpy
-( S alpha, const Matrix<T>& X, Matrix<T>& Y, bool conjugate=false );
-template<typename T,typename S>
-void TransposeAxpy
-( S alpha, const SparseMatrix<T>& X, SparseMatrix<T>& Y, bool conjugate=false );
-template<typename T,typename S>
-void TransposeAxpy
-( S alpha, const ElementalMatrix<T>& X, ElementalMatrix<T>& Y, 
-  bool conjugate=false );
-template<typename T,typename S>
-void TransposeAxpy
-( S alpha, const DistSparseMatrix<T>& X, DistSparseMatrix<T>& Y, 
-  bool conjugate=false );
-
-// TransposeAxpyContract
-// =====================
-template<typename T>
-void TransposeAxpyContract
-( T alpha, const ElementalMatrix<T>& A, 
-                 ElementalMatrix<T>& B, bool conjugate=false );
-template<typename T>
-void TransposeAxpyContract
-( T alpha, const BlockMatrix<T>& A, 
-                 BlockMatrix<T>& B, bool conjugate=false );
-
 // UpdateDiagonal
 // ==============
 template<typename T>
@@ -1900,38 +1538,32 @@ void Zero( DistMultiVec<T>& A );
 
 } // namespace El
 
-#include "./level1/Adjoint.hpp"
-#include "./level1/AdjointAxpy.hpp"
-#include "./level1/AdjointAxpyContract.hpp"
-#include "./level1/AdjointContract.hpp"
-#include "./level1/Axpy.hpp"
-#include "./level1/AxpyTrapezoid.hpp"
-#include "./level1/Contract.hpp"
-#include "./level1/Copy.hpp"
-#include "./level1/DiagonalScale.hpp"
-#include "./level1/DiagonalScaleTrapezoid.hpp"
-#include "./level1/DiagonalSolve.hpp"
-#include "./level1/Dot.hpp"
-#include "./level1/Dotu.hpp"
-#include "./level1/EntrywiseFill.hpp"
-#include "./level1/EntrywiseMap.hpp"
-#include "./level1/FillDiagonal.hpp"
-#include "./level1/GetDiagonal.hpp"
-#include "./level1/GetMappedDiagonal.hpp"
-#include "./level1/GetSubmatrix.hpp"
-#include "./level1/IndexDependentFill.hpp"
-#include "./level1/IndexDependentMap.hpp"
-#include "./level1/QuasiDiagonalScale.hpp"
-#include "./level1/QuasiDiagonalSolve.hpp"
-#include "./level1/Scale.hpp"
-#include "./level1/ScaleTrapezoid.hpp"
-#include "./level1/SetDiagonal.hpp"
-#include "./level1/Shift.hpp"
-#include "./level1/ShiftDiagonal.hpp"
-#include "./level1/Transpose.hpp"
-#include "./level1/TransposeContract.hpp"
-#include "./level1/UpdateDiagonal.hpp"
-#include "./level1/UpdateMappedDiagonal.hpp"
-#include "./level1/UpdateSubmatrix.hpp"
+#include <El/blas_like/level1/Contract.hpp>
+#include <El/blas_like/level1/Copy.hpp>
+#include <El/blas_like/level1/DiagonalScale.hpp>
+#include <El/blas_like/level1/DiagonalScaleTrapezoid.hpp>
+#include <El/blas_like/level1/DiagonalSolve.hpp>
+#include <El/blas_like/level1/Dot.hpp>
+#include <El/blas_like/level1/Dotu.hpp>
+#include <El/blas_like/level1/EntrywiseFill.hpp>
+#include <El/blas_like/level1/EntrywiseMap.hpp>
+#include <El/blas_like/level1/FillDiagonal.hpp>
+#include <El/blas_like/level1/GetDiagonal.hpp>
+#include <El/blas_like/level1/GetMappedDiagonal.hpp>
+#include <El/blas_like/level1/GetSubmatrix.hpp>
+#include <El/blas_like/level1/IndexDependentFill.hpp>
+#include <El/blas_like/level1/IndexDependentMap.hpp>
+#include <El/blas_like/level1/QuasiDiagonalScale.hpp>
+#include <El/blas_like/level1/QuasiDiagonalSolve.hpp>
+#include <El/blas_like/level1/Scale.hpp>
+#include <El/blas_like/level1/ScaleTrapezoid.hpp>
+#include <El/blas_like/level1/SetDiagonal.hpp>
+#include <El/blas_like/level1/Shift.hpp>
+#include <El/blas_like/level1/ShiftDiagonal.hpp>
+#include <El/blas_like/level1/Transpose.hpp>
+#include <El/blas_like/level1/TransposeContract.hpp>
+#include <El/blas_like/level1/UpdateDiagonal.hpp>
+#include <El/blas_like/level1/UpdateMappedDiagonal.hpp>
+#include <El/blas_like/level1/UpdateSubmatrix.hpp>
 
 #endif // ifndef EL_BLAS1_HPP

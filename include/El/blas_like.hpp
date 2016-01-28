@@ -9,28 +9,13 @@
 #ifndef EL_BLAS_HPP
 #define EL_BLAS_HPP
 
+#include <El/core/Element/decl.hpp>
+#include <El/core/imports/mpc.hpp>
+
 // Tuning parameters
 // =================
 
 namespace El {
-
-template<typename T> void SetLocalSymvBlocksize( Int blocksize );
-template<> void SetLocalSymvBlocksize<float>( Int blocksize );
-template<> void SetLocalSymvBlocksize<double>( Int blocksize );
-template<> void SetLocalSymvBlocksize<Complex<float>>( Int blocksize );
-template<> void SetLocalSymvBlocksize<Complex<double>>( Int blocksize );
-#ifdef EL_HAVE_QD
-template<> void SetLocalSymvBlocksize<DoubleDouble>( Int blocksize );
-template<> void SetLocalSymvBlocksize<QuadDouble>( Int blocksize );
-#endif
-#ifdef EL_HAVE_QUAD
-template<> void SetLocalSymvBlocksize<Quad>( Int blocksize );
-template<> void SetLocalSymvBlocksize<Complex<Quad>>( Int blocksize );
-#endif
-#ifdef EL_HAVE_MPC
-template<> void SetLocalSymvBlocksize<BigInt>( Int blocksize );
-template<> void SetLocalSymvBlocksize<BigFloat>( Int blocksize );
-#endif
 
 template<typename T> void SetLocalTrrkBlocksize( Int blocksize );
 template<> void SetLocalTrrkBlocksize<Int>( Int blocksize );
@@ -70,24 +55,6 @@ template<> void SetLocalTrr2kBlocksize<BigInt>( Int blocksize );
 template<> void SetLocalTrr2kBlocksize<BigFloat>( Int blocksize );
 #endif
 
-template<typename T> Int LocalSymvBlocksize();
-template<> Int LocalSymvBlocksize<Int>();
-template<> Int LocalSymvBlocksize<float>();
-template<> Int LocalSymvBlocksize<double>();
-template<> Int LocalSymvBlocksize<Complex<float>>();
-template<> Int LocalSymvBlocksize<Complex<double>>();
-#ifdef EL_HAVE_QD
-template<> Int LocalSymvBlocksize<DoubleDouble>();
-template<> Int LocalSymvBlocksize<QuadDouble>();
-#endif
-#ifdef EL_HAVE_QUAD
-template<> Int LocalSymvBlocksize<Quad>();
-template<> Int LocalSymvBlocksize<Complex<Quad>>();
-#endif
-#ifdef EL_HAVE_MPC
-template<> Int LocalSymvBlocksize<BigInt>();
-template<> Int LocalSymvBlocksize<BigFloat>();
-#endif
 
 template<typename T> Int LocalTrrkBlocksize();
 template<> Int LocalTrrkBlocksize<Int>();
@@ -127,17 +94,10 @@ template<> Int LocalTrr2kBlocksize<BigInt>();
 template<> Int LocalTrr2kBlocksize<BigFloat>();
 #endif
 
-template<typename T>
-struct SymvCtrl 
-{
-    Int bsize=LocalSymvBlocksize<T>();
-    bool avoidTrmvBasedLocalSymv=true;
-};
-
 } // namespace El
 
-#include "./blas_like/level1.hpp"
-#include "./blas_like/level2.hpp"
-#include "./blas_like/level3.hpp"
+#include <El/blas_like/level1.hpp>
+#include <El/blas_like/level2.hpp>
+#include <El/blas_like/level3.hpp>
 
 #endif // ifndef EL_BLAS_HPP

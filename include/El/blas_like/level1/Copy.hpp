@@ -9,9 +9,13 @@
 #ifndef EL_BLAS_COPY_HPP
 #define EL_BLAS_COPY_HPP
 
-#include "./Copy/internal_decl.hpp"
-#include "./Copy/GeneralPurpose.hpp"
-#include "./Copy/util.hpp"
+
+#include <El/core/Matrix.hpp>
+#include <El/core/DistMatrix.hpp>
+#include <El/core/SparseMatrix.hpp>
+#include <El/blas_like/level1/Copy/internal_decl.hpp>
+#include <El/blas_like/level1/Copy/GeneralPurpose.hpp>
+#include <El/blas_like/level1/Copy/util.hpp>
 
 namespace El {
 
@@ -180,7 +184,7 @@ void Copy( const BlockMatrix<S>& A, BlockMatrix<T>& B )
 
 template<typename T>
 void CopyFromRoot
-( const Matrix<T>& A, DistMatrix<T,CIRC,CIRC>& B, bool includingViewers )
+( const Matrix<T>& A, DistMatrix<T,CIRC,CIRC>& B, bool includingViewers=false)
 {
     DEBUG_ONLY(CSE cse("CopyFromRoot (M<T> to DM<T,CIRC,CIRC>)"))
     if( B.CrossRank() != B.Root() )
@@ -191,7 +195,7 @@ void CopyFromRoot
 }
 
 template<typename T>
-void CopyFromNonRoot( DistMatrix<T,CIRC,CIRC>& B, bool includingViewers )
+void CopyFromNonRoot( DistMatrix<T,CIRC,CIRC>& B, bool includingViewers=false)
 {
     DEBUG_ONLY(CSE cse("CopyFromNonRoot (DM<T,CIRC,CIRC>)"))
     if( B.CrossRank() == B.Root() )
@@ -202,7 +206,7 @@ void CopyFromNonRoot( DistMatrix<T,CIRC,CIRC>& B, bool includingViewers )
 template<typename T>
 void CopyFromRoot
 ( const Matrix<T>& A, DistMatrix<T,CIRC,CIRC,BLOCK>& B,
-  bool includingViewers )
+  bool includingViewers=false)
 {
     DEBUG_ONLY(CSE cse("CopyFromRoot (M<T> to DM<T,CIRC,CIRC,BLOCK>)"))
     if( B.CrossRank() != B.Root() )
@@ -214,7 +218,7 @@ void CopyFromRoot
 
 template<typename T>
 void CopyFromNonRoot
-( DistMatrix<T,CIRC,CIRC,BLOCK>& B, bool includingViewers )
+( DistMatrix<T,CIRC,CIRC,BLOCK>& B, bool includingViewers=false)
 {
     DEBUG_ONLY(CSE cse("CopyFromNonRoot (DM<T,CIRC,CIRC,BLOCK>)"))
     if( B.CrossRank() == B.Root() )
@@ -318,7 +322,7 @@ void CopyFromRoot( const DistSparseMatrix<T>& ADist, SparseMatrix<T>& A )
 }
 
 template<typename T>
-void CopyFromNonRoot( const DistSparseMatrix<T>& ADist, int root )
+void CopyFromNonRoot( const DistSparseMatrix<T>& ADist, int root=0)
 {
     DEBUG_ONLY(CSE cse("CopyFromNonRoot (DSM<T>)"))
     const mpi::Comm comm = ADist.Comm();
@@ -455,7 +459,7 @@ void CopyFromRoot( const DistMultiVec<T>& XDist, Matrix<T>& X )
 }
 
 template<typename T>
-void CopyFromNonRoot( const DistMultiVec<T>& XDist, int root )
+void CopyFromNonRoot( const DistMultiVec<T>& XDist, int root=0)
 {
     DEBUG_ONLY(CSE cse("CopyFromNonRoot (DMV<T>)"))
     const Int m = XDist.Height();

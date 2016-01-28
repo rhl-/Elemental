@@ -9,6 +9,9 @@
 #ifndef EL_BLAS_GETMAPPEDDIAGONAL_HPP
 #define EL_BLAS_GETMAPPEDDIAGONAL_HPP
 
+#include <El/core/DistMatrix/Abstract.hpp>
+
+
 namespace El {
 
 template<typename T,typename S>
@@ -100,7 +103,7 @@ void GetMappedDiagonal
     const Int iStart = Max(-offset,0);
     const Int jStart = Max( offset,0);
 
-    const Int diagLength = El::DiagonalLength(m,n,offset);
+    const Int diagLength = DiagonalLength(m,n,offset);
     Zeros( d, diagLength, 1 );
     S* dBuf = d.Buffer();
 
@@ -140,7 +143,7 @@ void GetMappedDiagonal
         LogicError("DistSparseMatrix GetMappedDiagonal assumes offset=0");
 
     d.SetComm( A.Comm() );
-    Ones( d, El::DiagonalLength(m,n,offset), 1 );
+    Ones( d, DiagonalLength(m,n,offset), 1 );
     S* dBuf = d.Matrix().Buffer();
     const Int dLocalHeight = d.LocalHeight();
     for( Int iLoc=0; iLoc<dLocalHeight; ++iLoc )

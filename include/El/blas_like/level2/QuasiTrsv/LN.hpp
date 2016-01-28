@@ -1,3 +1,4 @@
+#pragma once
 /*
    Copyright (c) 2009-2016, Jack Poulson
    All rights reserved.

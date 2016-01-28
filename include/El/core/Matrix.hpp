@@ -8,6 +8,7 @@
 */
 #ifndef EL_MATRIX_HPP
 #define EL_MATRIX_HPP
+#include <El/core.hpp>
 
 namespace El {
 

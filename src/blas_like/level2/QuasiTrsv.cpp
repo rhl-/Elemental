@@ -6,59 +6,10 @@
    which can be found in the LICENSE file in the root directory, or at 
    http://opensource.org/licenses/BSD-2-Clause
 */
-#include "El.hpp"
 
-#include "./QuasiTrsv/LN.hpp"
-#include "./QuasiTrsv/LT.hpp"
-#include "./QuasiTrsv/UN.hpp"
-#include "./QuasiTrsv/UT.hpp"
+#include <El/blas_like/level2/QuasiTrsv.hpp>
 
 namespace El {
-
-template<typename F>
-void QuasiTrsv
-( UpperOrLower uplo, Orientation orientation, const Matrix<F>& A, Matrix<F>& x, 
-  bool checkIfSingular )
-{
-    DEBUG_ONLY(CSE cse("QuasiTrsv"))
-    if( uplo == LOWER )
-    {
-        if( orientation == NORMAL )
-            quasitrsv::LN( A, x, checkIfSingular );
-        else
-            quasitrsv::LT( orientation, A, x, checkIfSingular );
-    }
-    else
-    {
-        if( orientation == NORMAL )
-            quasitrsv::UN( A, x, checkIfSingular );
-        else
-            quasitrsv::UT( orientation, A, x, checkIfSingular );
-    }
-}
-
-template<typename F>
-void QuasiTrsv
-( UpperOrLower uplo, Orientation orientation, 
-  const ElementalMatrix<F>& A, ElementalMatrix<F>& x, 
-  bool checkIfSingular )
-{
-    DEBUG_ONLY(CSE cse("QuasiTrsv"))
-    if( uplo == LOWER )
-    {
-        if( orientation == NORMAL )
-            quasitrsv::LN( A, x, checkIfSingular );
-        else
-            quasitrsv::LT( orientation, A, x, checkIfSingular );
-    }
-    else
-    {
-        if( orientation == NORMAL )
-            quasitrsv::UN( A, x, checkIfSingular );
-        else
-            quasitrsv::UT( orientation, A, x, checkIfSingular );
-    }
-}
 
 #define PROTO(F) \
   template void QuasiTrsv \

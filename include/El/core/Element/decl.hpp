@@ -9,6 +9,11 @@
 #ifndef EL_ELEMENT_DECL_HPP
 #define EL_ELEMENT_DECL_HPP
 
+#include <El/core/imports/mpc.hpp>
+#include <cmath>
+#include <complex>
+#include <string>
+
 namespace El {
 
 template<typename Real>

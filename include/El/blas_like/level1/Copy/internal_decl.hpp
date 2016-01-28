@@ -9,6 +9,8 @@
 #ifndef EL_BLAS1_COPYINTERNAL_DECL_HPP
 #define EL_BLAS1_COPYINTERNAL_DECL_HPP
 
+#include <El/core/Element/decl.hpp>
+
 namespace El {
 
 namespace copy {

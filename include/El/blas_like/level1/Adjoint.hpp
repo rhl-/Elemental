@@ -9,6 +9,9 @@
 #ifndef EL_BLAS_ADJOINT_HPP
 #define EL_BLAS_ADJOINT_HPP
 
+#include <El/blas_like/level1/Transpose.hpp>
+#include <El/blas_like/level1/Copy.hpp>
+
 namespace El {
 
 template<typename T>

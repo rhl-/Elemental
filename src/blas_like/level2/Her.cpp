@@ -6,26 +6,11 @@
    which can be found in the LICENSE file in the root directory, or at 
    http://opensource.org/licenses/BSD-2-Clause
 */
-#include "El.hpp"
+
+#include <El/blas_like/level2/Her.hpp>
 
 namespace El {
 
-template<typename T>
-void Her( UpperOrLower uplo, Base<T> alpha, const Matrix<T>& x, Matrix<T>& A )
-{
-    DEBUG_ONLY(CSE cse("Her"))
-    Syr( uplo, T(alpha), x, A, true );
-}
-
-template<typename T>
-void Her
-( UpperOrLower uplo, 
-  Base<T> alpha, const ElementalMatrix<T>& x, 
-                       ElementalMatrix<T>& A )
-{
-    DEBUG_ONLY(CSE cse("Her"))
-    Syr( uplo, T(alpha), x, A, true );
-}
 
 #define PROTO(T) \
   template void Her \

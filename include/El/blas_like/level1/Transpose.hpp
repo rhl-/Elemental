@@ -9,8 +9,9 @@
 #ifndef EL_BLAS_TRANSPOSE_HPP
 #define EL_BLAS_TRANSPOSE_HPP
 
-namespace El {
+#include <El/blas_like/level1/Copy.hpp>
 
+namespace El {
 namespace transpose {
 
 template<typename T>
@@ -70,7 +71,7 @@ void PartialColAllGather
 } // namespace transpose
 
 template<typename T>
-void Transpose( const Matrix<T>& A, Matrix<T>& B, bool conjugate )
+void Transpose( const Matrix<T>& A, Matrix<T>& B, bool conjugate=false )
 {
     DEBUG_ONLY(CSE cse("Transpose"))
     const Int m = A.Height();
@@ -110,7 +111,7 @@ void Transpose( const Matrix<T>& A, Matrix<T>& B, bool conjugate )
 
 template<typename T>
 void Transpose
-( const ElementalMatrix<T>& A, ElementalMatrix<T>& B, bool conjugate )
+( const ElementalMatrix<T>& A, ElementalMatrix<T>& B, bool conjugate=false )
 {
     DEBUG_ONLY(CSE cse("Transpose"))
     const auto AData = A.DistData();
@@ -171,7 +172,7 @@ template<typename T>
 void Transpose
 ( const BlockMatrix<T>& A,
         BlockMatrix<T>& B, 
-  bool conjugate )
+  bool conjugate=false )
 {
     DEBUG_ONLY(CSE cse("Transpose"))
     const auto AData = A.DistData();
@@ -236,7 +237,7 @@ template<typename T>
 void Transpose
 ( const AbstractDistMatrix<T>& A,
         AbstractDistMatrix<T>& B, 
-  bool conjugate )
+  bool conjugate=false )
 {
     DEBUG_ONLY(CSE cse("Transpose"))
     if( A.Wrap() == ELEMENT && B.Wrap() == ELEMENT )
@@ -275,7 +276,7 @@ void Transpose
 
 template<typename T>
 void Transpose
-( const SparseMatrix<T>& A, SparseMatrix<T>& B, bool conjugate )
+( const SparseMatrix<T>& A, SparseMatrix<T>& B, bool conjugate=false)
 {
     DEBUG_ONLY(CSE cse("Transpose"))
     Zeros( B, A.Width(), A.Height() );
@@ -284,7 +285,7 @@ void Transpose
 
 template<typename T>
 void Transpose
-( const DistSparseMatrix<T>& A, DistSparseMatrix<T>& B, bool conjugate )
+( const DistSparseMatrix<T>& A, DistSparseMatrix<T>& B, bool conjugate=false)
 {
     DEBUG_ONLY(CSE cse("Transpose"))
     B.SetComm( A.Comm() );
@@ -294,11 +295,11 @@ void Transpose
 
 } // namespace El
 
-#include "./Transpose/ColAllGather.hpp"
-#include "./Transpose/ColFilter.hpp"
-#include "./Transpose/PartialColAllGather.hpp"
-#include "./Transpose/PartialColFilter.hpp"
-#include "./Transpose/PartialRowFilter.hpp"
-#include "./Transpose/RowFilter.hpp"
+#include <El/blas_like/level1/Transpose/ColAllGather.hpp>
+#include <El/blas_like/level1/Transpose/ColFilter.hpp>
+#include <El/blas_like/level1/Transpose/PartialColAllGather.hpp>
+#include <El/blas_like/level1/Transpose/PartialColFilter.hpp>
+#include <El/blas_like/level1/Transpose/PartialRowFilter.hpp>
+#include <El/blas_like/level1/Transpose/RowFilter.hpp>
 
 #endif // ifndef EL_BLAS_TRANSPOSE_HPP

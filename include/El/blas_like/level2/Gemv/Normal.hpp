@@ -6,6 +6,10 @@
    which can be found in the LICENSE file in the root directory, or at 
    http://opensource.org/licenses/BSD-2-Clause
 */
+#ifndef EL_BLAS_LIKE_GEMV_NORMAL_HPP
+#define EL_BLAS_LIKE_GEMV_NORMAL_HPP
+
+#include <El/core.hpp>
 
 namespace El {
 namespace gemv {
@@ -134,3 +138,5 @@ inline void Normal
 
 } // namespace gemv
 } // namespace El
+
+#endif

@@ -1,3 +1,4 @@
+#pragma once
 /*
    Copyright (c) 2009-2016, Jack Poulson
    All rights reserved.
@@ -12,13 +13,16 @@ namespace trsv {
 
 template<typename F>
 inline void
-UN
-( UnitOrNonUnit diag, 
+UT
+( Orientation orientation,
+  UnitOrNonUnit diag, 
   const AbstractDistMatrix<F>& UPre,
         AbstractDistMatrix<F>& xPre )
 {
     DEBUG_ONLY(
-      CSE cse("trsv::UN");
+      CSE cse("trsv::UT");
+      if( orientation == NORMAL )
+          LogicError("Expected a (conjugate-)transpose option");
       AssertSameGrids( UPre, xPre );
       if( UPre.Height() != UPre.Width() )
           LogicError("U must be square");
@@ -31,7 +35,6 @@ UN
     )
     const Int m = UPre.Height();
     const Int bsize = Blocksize();
-    const Int kLast = LastOffset( m, bsize );
     const Grid& g = UPre.Grid();
 
     DistMatrixReadProxy<F,F,MC,MR> UProx( UPre );
@@ -39,90 +42,90 @@ UN
     auto& U = UProx.GetLocked();
     auto& x = xProx.Get();
 
-    // Matrix views
-    DistMatrix<F> U01(g), U11(g), x1(g);
+    // Matrix views 
+    DistMatrix<F> U11(g), U12(g), x1(g);
 
     // Temporary distributions
     DistMatrix<F,STAR,STAR> U11_STAR_STAR(g), x1_STAR_STAR(g);
 
     if( x.Width() == 1 )
     {
-        DistMatrix<F,MR,STAR> x1_MR_STAR(g);
-        DistMatrix<F,MC,STAR> z_MC_STAR(g);
+        DistMatrix<F,MC,  STAR> x1_MC_STAR(g);
+        DistMatrix<F,MR,  MC  > z1_MR_MC(g);
+        DistMatrix<F,MR,  STAR> z_MR_STAR(g);
 
-        // Views of z[MC,* ], which will store updates to x
-        DistMatrix<F,MC,STAR> z0_MC_STAR(g), z1_MC_STAR(g);
+        // Views of z[MR,* ]
+        DistMatrix<F,MR,STAR> z1_MR_STAR(g), z2_MR_STAR(g);
 
-        z_MC_STAR.AlignWith( U );
-        Zeros( z_MC_STAR, m, 1 );
+        z_MR_STAR.AlignWith( U );
+        Zeros( z_MR_STAR, m, 1 );
 
-        for( Int k=kLast; k>=0; k-=bsize )
+        for( Int k=0; k<m; k+=bsize )
         {
             const Int nb = Min(bsize,m-k);
 
-            LockedView( U01, U, IR(0,k), IR(k,k+nb) );
             LockedView( U11, U, IR(k,k+nb), IR(k,k+nb) );
+            LockedView( U12, U, IR(k,k+nb), IR(k+nb,m) );
 
             View( x1, x, IR(k,k+nb), ALL );
 
-            View( z0_MC_STAR, z_MC_STAR, IR(0,k), ALL );
-            View( z1_MC_STAR, z_MC_STAR, IR(k,k+nb), ALL );
+            View( z1_MR_STAR, z_MR_STAR, IR(k,k+nb), ALL );
+            View( z2_MR_STAR, z_MR_STAR, IR(k+nb,m), ALL );
 
-            if( k+nb != m )
-                AxpyContract( F(1), z1_MC_STAR, x1 );
-
-            x1_STAR_STAR = x1;
-            U11_STAR_STAR = U11;
-            Trsv
-            ( UPPER, NORMAL, diag,
-              U11_STAR_STAR.LockedMatrix(), x1_STAR_STAR.Matrix() );
-            x1 = x1_STAR_STAR;
-
-            x1_MR_STAR.AlignWith( U01 );
-            x1_MR_STAR = x1_STAR_STAR;
-            LocalGemv( NORMAL, F(-1), U01, x1_MR_STAR, F(1), z0_MC_STAR );
-        }
-    }
-    else
-    {
-        DistMatrix<F,STAR,MR> x1_STAR_MR(g);
-        DistMatrix<F,MR,  MC> z1_MR_MC(g);
-        DistMatrix<F,STAR,MC> z_STAR_MC(g);
-
-        // Views of z[* ,MC]
-        DistMatrix<F,STAR,MC> z0_STAR_MC(g), z1_STAR_MC(g);
-
-        z_STAR_MC.AlignWith( U );
-        Zeros( z_STAR_MC, 1, m );
-
-        for( Int k=kLast; k>=0; k-=bsize )
-        {
-            const Int nb = Min(bsize,m-k);
-
-            LockedView( U01, U, IR(0,k), IR(k,k+nb) );
-            LockedView( U11, U, IR(k,k+nb), IR(k,k+nb) );
-
-            View( x1, x, ALL, IR(k,k+nb) );
-
-            View( z0_STAR_MC, z_STAR_MC, ALL, IR(0,k) );
-            View( z1_STAR_MC, z_STAR_MC, ALL, IR(k,k+nb) );
-
-            if( k+nb != m )
+            if( k != 0 )
             {
-                Contract( z1_STAR_MC, z1_MR_MC );
+                Contract( z1_MR_STAR, z1_MR_MC );
                 x1 += z1_MR_MC;
             }
 
             x1_STAR_STAR = x1;
             U11_STAR_STAR = U11;
             Trsv
-            ( UPPER, NORMAL, diag,
+            ( UPPER, orientation, diag,
               U11_STAR_STAR.LockedMatrix(), x1_STAR_STAR.Matrix() );
             x1 = x1_STAR_STAR;
 
-            x1_STAR_MR.AlignWith( U01 );
-            x1_STAR_MR = x1_STAR_STAR;
-            LocalGemv( NORMAL, F(-1), U01, x1_STAR_MR, F(1), z0_STAR_MC );
+            x1_MC_STAR.AlignWith( U12 );
+            x1_MC_STAR = x1_STAR_STAR;
+            LocalGemv( orientation, F(-1), U12, x1_MC_STAR, F(1), z2_MR_STAR );
+        }
+    }
+    else
+    {
+        DistMatrix<F,STAR,MC> x1_STAR_MC(g);
+        DistMatrix<F,STAR,MR> z_STAR_MR(g);
+
+        // Views of z[* ,MR]
+        DistMatrix<F,STAR,MR> z1_STAR_MR(g), z2_STAR_MR(g);
+
+        z_STAR_MR.AlignWith( U );
+        Zeros( z_STAR_MR, 1, m );
+
+        for( Int k=0; k<m; k+=bsize )
+        {
+            const Int nb = Min(bsize,m-k);
+
+            LockedView( U11, U, IR(k,k+nb), IR(k,k+nb) );
+            LockedView( U12, U, IR(k,k+nb), IR(k+nb,m) );
+
+            View( x1, x, ALL, IR(k,k+nb) );
+
+            View( z1_STAR_MR, z_STAR_MR, ALL, IR(k,k+nb) );
+            View( z2_STAR_MR, z_STAR_MR, ALL, IR(k+nb,m) );
+
+            if( k != 0 )
+                AxpyContract( F(1), z1_STAR_MR, x1 );
+
+            x1_STAR_STAR = x1;
+            U11_STAR_STAR = U11;
+            Trsv
+            ( UPPER, orientation, diag,
+              U11_STAR_STAR.LockedMatrix(), x1_STAR_STAR.Matrix() );
+            x1 = x1_STAR_STAR;
+
+            x1_STAR_MC.AlignWith( U12 );
+            x1_STAR_MC = x1_STAR_STAR;
+            LocalGemv( orientation, F(-1), U12, x1_STAR_MC, F(1), z2_STAR_MR );
         }
     }
 }

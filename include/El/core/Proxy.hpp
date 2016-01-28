@@ -9,6 +9,7 @@
 #ifndef EL_CORE_PROXY_HPP
 #define EL_CORE_PROXY_HPP
 
+#include <El/blas_like/level1/Copy.hpp>
 // TODO: Split into several files
 
 namespace El {

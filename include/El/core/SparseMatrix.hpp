@@ -10,6 +10,7 @@
 */
 #ifndef EL_CORE_SPARSEMATRIX_DECL_HPP
 #define EL_CORE_SPARSEMATRIX_DECL_HPP
+#include <El/core/Graph.hpp>
 
 namespace El {
 

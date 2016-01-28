@@ -1,3 +1,4 @@
+#pragma once
 /*
    Copyright (c) 2009-2016, Jack Poulson
    All rights reserved.
@@ -6,6 +7,10 @@
    which can be found in the LICENSE file in the root directory, or at 
    http://opensource.org/licenses/BSD-2-Clause
 */
+#ifndef EL_BLAS_LIKE_GEMV_TRANSPOSE_HPP
+#define EL_BLAS_LIKE_GEMV_TRANSPOSE_HPP
+
+#include <El/core.hpp>
 
 namespace El {
 namespace gemv {
@@ -155,3 +160,4 @@ Transpose
 
 } // namespace gemv
 } // namespace El
+#endif
