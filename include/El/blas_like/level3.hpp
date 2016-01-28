@@ -29,5 +29,7 @@
 #include <El/blas_like/level3/Trtrmm.hpp>
 #include <El/blas_like/level3/TwoSidedTrmm.hpp>
 #include <El/blas_like/level3/TwoSidedTrsm.hpp>
+#include <El/blas_like/level3/HermitianFromEVD.hpp>
+#include <El/blas_like/level3/NormalFromEVD.hpp>
 
 #endif // ifndef EL_BLAS3_HPP
