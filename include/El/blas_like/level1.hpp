@@ -27,6 +27,7 @@
 // Axpy
 // ====
 #include <El/blas_like/level1/Axpy.hpp>
+#include <El/blas_like/level1/AxpyContract.hpp>
 
 // AxpyTrapezoid
 // ==========

@@ -26,6 +26,8 @@
 // TODO: Simplify once DistMultiVec is eliminated
 // TODO: Allow for a choice between max and two norms?
 
+#include <El/lapack_like/props.hpp>
+
 namespace El {
 
 namespace refined_solve {

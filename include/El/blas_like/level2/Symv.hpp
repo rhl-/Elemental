@@ -8,6 +8,8 @@
    http://opensource.org/licenses/BSD-2-Clause
 */
 #include <El/core.hpp>
+#include <El/core/imports/mpc.hpp>
+#include <El/blas_like/level1/AxpyContract.hpp>
 
 namespace El {
 
@@ -37,7 +39,6 @@ namespace El {
     template<> void SetLocalSymvBlocksize<Complex<Quad>>( Int blocksize );
 #endif
 #ifdef EL_HAVE_MPC
-
     template<>
     void SetLocalSymvBlocksize<BigInt>(Int blocksize);
 
