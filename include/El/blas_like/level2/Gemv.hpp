@@ -11,6 +11,9 @@
 #define BLAS_LIKE_LEVEL2_GEMV_HPP
 
 #include <El/core.hpp>
+#include <El/core/imports/scalapack/blacs.hpp>
+#include <El/core/imports/scalapack/pblas.hpp>
+
 #include <El/matrices.hpp>
 
 #include <El/blas_like/level2/Gemv/Normal.hpp>
