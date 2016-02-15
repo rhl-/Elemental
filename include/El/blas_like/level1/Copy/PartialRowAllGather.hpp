@@ -12,7 +12,7 @@
 #include <iosfwd>
 #include <vector>
 
-#include "/El/blas_like/level1/Copy/util.hpp"
+#include "El/blas_like/level1/Copy/util.hpp"
 #include "El/core.hpp"
 #include "El/core/./DistMatrix/Block.hpp"
 #include "El/core/./DistMatrix/Element.hpp"

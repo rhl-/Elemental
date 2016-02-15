@@ -24,7 +24,6 @@ namespace El {
 // The rows of these distributed matrices are spread throughout the 
 // process grid in a row-major fashion, while the columns are not 
 // distributed.
-//template <typename T = double, El::DistNS::Dist U = MC, El::DistNS::Dist V = MR, El::DistWrapNS::DistWrap wrap = ELEMENT> class DistMatrix;
 
 template<typename T>
 class DistMatrix<T,STAR,VR> : public ElementalMatrix<T>
@@ -162,7 +161,6 @@ public:
     int PartialUnionRowRank() const EL_NO_EXCEPT override;
 
 private:
-    template<typename S,Dist U,Dist V,DistWrap wrap> friend class DistMatrix;
 };
 
 } // namespace El

@@ -28,7 +28,6 @@ namespace El {
 // (Sequential) matrix
 // -------------------
 
-//template <typename T = double, El::DistNS::Dist U = MC, El::DistNS::Dist V = MR, El::DistWrapNS::DistWrap wrap = ELEMENT> class DistMatrix;
 
 template<typename T>
 inline void View( Matrix<T>& A, Matrix<T>& B )

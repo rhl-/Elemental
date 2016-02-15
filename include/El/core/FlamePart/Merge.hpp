@@ -17,7 +17,6 @@ namespace El {
 
 // Horizontally merge two contiguous matrices
 // ==========================================
-//template <typename T = double, El::DistNS::Dist U = MC, El::DistNS::Dist V = MR, El::DistWrapNS::DistWrap wrap = ELEMENT> class DistMatrix;
 
 template<typename T>
 void Merge1x2( Matrix<T>& A, Matrix<T>& BL, Matrix<T>& BR );

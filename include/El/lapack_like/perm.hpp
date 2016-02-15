@@ -21,7 +21,6 @@ namespace El {
 // Convert a pivot sequence to a partial permutation vector
 // ========================================================
 // NOTE: These routine are now deprecated
-template <typename T = double, El::DistNS::Dist U = MC, El::DistNS::Dist V = MR, El::DistWrapNS::DistWrap wrap = ELEMENT> class DistMatrix;
 
 void PivotsToPartialPermutation
 ( const Matrix<Int>& pivots,

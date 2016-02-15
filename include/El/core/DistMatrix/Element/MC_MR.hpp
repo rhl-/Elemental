@@ -25,7 +25,6 @@ namespace El {
 // process grid, and the rows will be distributed among rows of the process
 // grid.
 
-//template <typename T = double, El::DistNS::Dist U = MC, El::DistNS::Dist V = MR, El::DistWrapNS::DistWrap wrap = ELEMENT> class DistMatrix;
 
 template<typename T>
 class DistMatrix<T,MC,MR> : public ElementalMatrix<T>
@@ -163,7 +162,6 @@ public:
     int PartialUnionRowRank() const EL_NO_EXCEPT override;
 
 private:
-    template<typename S,Dist U,Dist V,DistWrap wrap> friend class DistMatrix;
 };
 
 } // namespace El

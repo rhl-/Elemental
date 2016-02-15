@@ -26,7 +26,6 @@ namespace El {
 // "Matrix Columns" (MC). Thus the columns will be distributed within 
 // rows of the process grid and the rows will be distributed within columns
 // of the process grid.
-//template <typename T = double, El::DistNS::Dist U = MC, El::DistNS::Dist V = MR, El::DistWrapNS::DistWrap wrap = ELEMENT> class DistMatrix;
 
 template<typename T>
 class DistMatrix<T,MR,MC> : public ElementalMatrix<T>
@@ -164,7 +163,6 @@ public:
     int PartialUnionRowRank() const EL_NO_EXCEPT override;
 
 private:
-    template<typename S,Dist U,Dist V,DistWrap wrap> friend class DistMatrix;
 };
 
 } // namespace El

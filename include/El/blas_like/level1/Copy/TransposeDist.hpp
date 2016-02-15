@@ -21,7 +21,6 @@
 
 namespace El {
 class Grid;
-template <typename T = double, El::DistNS::Dist U = MC, El::DistNS::Dist V = MR, El::DistWrapNS::DistWrap wrap = ELEMENT> class DistMatrix;
 }  // namespace El
 
 namespace El {

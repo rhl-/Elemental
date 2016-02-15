@@ -16,7 +16,6 @@
 #include "El/core/types.hpp"
 
 namespace El {
-template <typename T = double, El::DistNS::Dist U = MC, El::DistNS::Dist V = MR, El::DistWrapNS::DistWrap wrap = ELEMENT> class DistMatrix;
 template <typename T> class DistMultiVec;
 template <typename T> class DistSparseMatrix;
 template <typename T> class SparseMatrix;

@@ -22,7 +22,6 @@ namespace El {
 // Partial specialization to A[o,o].
 //
 // The entire matrix is only stored on a single process.
-//template <typename T = double, El::DistNS::Dist U = MC, El::DistNS::Dist V = MR, El::DistWrapNS::DistWrap wrap = ELEMENT> class DistMatrix;
 
 template<typename T>
 class DistMatrix<T,CIRC,CIRC> : public ElementalMatrix<T>
@@ -147,7 +146,6 @@ public:
     int PartialUnionRowRank() const EL_NO_EXCEPT override;
 
 private:
-    template<typename S,Dist U,Dist V,DistWrap wrap> friend class DistMatrix;
 };
 
 } // namespace El

@@ -24,7 +24,6 @@ namespace El {
 // TODO: Avoid duplication with QuasiDiagonalScale if possible. Only
 //       difference is the inversions
 class Grid;
-template <typename T = double, El::DistNS::Dist U = MC, El::DistNS::Dist V = MR, El::DistWrapNS::DistWrap wrap = ELEMENT> class DistMatrix;
 
 template<typename F,typename FMain>
 void

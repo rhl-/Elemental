@@ -23,7 +23,6 @@
 
 namespace El {
 
-template <typename T = double, El::DistNS::Dist U = MC, El::DistNS::Dist V = MR, El::DistWrapNS::DistWrap wrap = ELEMENT> class DistMatrix;
 
 template<typename T>
 void GetDiagonal( const Matrix<T>& A, Matrix<T>& d, Int offset )
