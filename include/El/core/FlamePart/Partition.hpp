@@ -9,6 +9,10 @@
 #ifndef EL_FLAMEPART_PARTITION_HPP
 #define EL_FLAMEPART_PARTITION_HPP
 
+#include "El/core/./DistMatrix/Element.hpp"
+#include "El/core/Matrix.hpp"
+#include "El/core/environment/decl.hpp"
+
 namespace El {
 
 // Partition downwards from the top

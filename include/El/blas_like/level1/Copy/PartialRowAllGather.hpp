@@ -9,6 +9,18 @@
 #ifndef EL_BLAS_COPY_PARTIALROWALLGATHER_HPP
 #define EL_BLAS_COPY_PARTIALROWALLGATHER_HPP
 
+#include <iosfwd>
+#include <vector>
+
+#include "/El/blas_like/level1/Copy/util.hpp"
+#include "El/core.hpp"
+#include "El/core/./DistMatrix/Block.hpp"
+#include "El/core/./DistMatrix/Element.hpp"
+#include "El/core/environment/decl.hpp"
+#include "El/core/imports/mpi.hpp"
+#include "El/core/indexing/impl.hpp"
+#include "El/core/types.hpp"
+
 namespace El {
 namespace copy {
 

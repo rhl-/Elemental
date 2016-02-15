@@ -9,6 +9,16 @@
 #ifndef EL_MATRICES_HPP
 #define EL_MATRICES_HPP
 
+#include <functional>
+#include <vector>
+
+#include "El/core.hpp"
+#include "El/core/./DistMatrix/Abstract.hpp"
+#include "El/core/./DistMatrix/Element.hpp"
+#include "El/core/Element/decl.hpp"
+#include "El/core/Matrix.hpp"
+#include "El/core/imports/mpi.hpp"
+
 namespace El {
 
 // Deterministic
@@ -19,6 +29,10 @@ namespace El {
 
 // Cauchy
 // ------
+template <typename T> class DistMultiVec;
+template <typename T> class DistSparseMatrix;
+template <typename T> class SparseMatrix;
+
 template<typename F1,typename F2>
 void Cauchy
 ( Matrix<F1>& A, const vector<F2>& x, const vector<F2>& y );

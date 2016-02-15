@@ -9,6 +9,10 @@
 #ifndef EL_FLAMEPART_REPARTITION_HPP
 #define EL_FLAMEPART_REPARTITION_HPP
 
+#include "El/core/./DistMatrix/Element.hpp"
+#include "El/core/Matrix.hpp"
+#include "El/core/environment/decl.hpp"
+
 namespace El {
 
 // To make our life easier. Undef'd at the bottom of the header

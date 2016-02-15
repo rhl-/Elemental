@@ -9,7 +9,24 @@
 #ifndef EL_IO_HPP
 #define EL_IO_HPP
 
+#include <iostream>
+#include <vector>
+
+#include "El/core.hpp"
+#include "El/core/./DistMatrix/Abstract.hpp"
+#include "El/core/DistGraph.hpp"
+#include "El/core/Element/decl.hpp"
+#include "El/core/Graph.hpp"
+#include "El/core/Matrix.hpp"
+#include "El/core/environment/decl.hpp"
+#include "El/core/imports/mpi.hpp"
+#include "El/core/types.hpp"
+
 namespace El {
+
+template <typename T> class DistMultiVec;
+template <typename T> class DistSparseMatrix;
+template <typename T> class SparseMatrix;
 
 const char* QtImageFormat( FileFormat format );
 string FileExtension( FileFormat format );
@@ -53,9 +70,9 @@ void UpdateMaxImagWindowVal( double maxVal );
 } // namespace El
 
 #ifdef EL_HAVE_QT5
+# include "El/io/ComplexDisplayWindow-premoc.hpp"
 # include "El/io/DisplayWidget.hpp"
 # include "El/io/DisplayWindow-premoc.hpp"
-# include "El/io/ComplexDisplayWindow-premoc.hpp"
 #endif // ifdef EL_HAVE_QT5
 
 namespace El {
@@ -101,7 +118,10 @@ void Display( const DistSparseMatrix<T>& A, string title="DistSparseMatrix" );
 
 // Sparse-direct data structures
 // -----------------------------
-namespace ldl { struct DistNodeInfo; }
+namespace ldl {
+struct DistNodeInfo;
+}  // namespace ldl
+
 void DisplayLocal
 ( const ldl::DistNodeInfo& info, bool beforeFact, string title="" );
 

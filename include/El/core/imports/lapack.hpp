@@ -9,6 +9,9 @@
 #ifndef EL_IMPORTS_LAPACK_HPP
 #define EL_IMPORTS_LAPACK_HPP
 
+#include "El/core/Element/decl.hpp"
+#include "El/core/imports/blas.hpp"
+
 namespace El {
 
 namespace lapack {

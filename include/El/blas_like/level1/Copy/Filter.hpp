@@ -9,6 +9,17 @@
 #ifndef EL_BLAS_COPY_FILTER_HPP
 #define EL_BLAS_COPY_FILTER_HPP
 
+#include <iosfwd>
+
+#include "/El/blas_like/level1/Copy/util.hpp"
+#include "El/core.hpp"
+#include "El/core/environment/decl.hpp"
+#include "El/core/types.hpp"
+
+namespace El {
+template <typename T = double, El::DistNS::Dist U = MC, El::DistNS::Dist V = MR, El::DistWrapNS::DistWrap wrap = ELEMENT> class DistMatrix;
+}  // namespace El
+
 namespace El {
 namespace copy {
 

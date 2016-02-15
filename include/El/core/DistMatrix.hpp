@@ -9,6 +9,10 @@
 #ifndef EL_CORE_DISTMATRIX_HPP
 #define EL_CORE_DISTMATRIX_HPP
 
+#include <ostream>
+
+#include "El/core/environment/decl.hpp"
+
 namespace El {
 
 template<typename DistTypeA,typename DistTypeB>
@@ -24,23 +28,6 @@ class DistMultiVec;
 } // namespace El
 
 #include "./DistMatrix/Abstract.hpp"
-
-#include "./DistMatrix/Element.hpp"
-#include "./DistMatrix/Element/CIRC_CIRC.hpp"
-#include "./DistMatrix/Element/MC_MR.hpp"
-#include "./DistMatrix/Element/MC_STAR.hpp"
-#include "./DistMatrix/Element/MD_STAR.hpp"
-#include "./DistMatrix/Element/MR_MC.hpp"
-#include "./DistMatrix/Element/MR_STAR.hpp"
-#include "./DistMatrix/Element/STAR_MC.hpp"
-#include "./DistMatrix/Element/STAR_MD.hpp"
-#include "./DistMatrix/Element/STAR_MR.hpp"
-#include "./DistMatrix/Element/STAR_STAR.hpp"
-#include "./DistMatrix/Element/STAR_VC.hpp"
-#include "./DistMatrix/Element/STAR_VR.hpp"
-#include "./DistMatrix/Element/VC_STAR.hpp"
-#include "./DistMatrix/Element/VR_STAR.hpp"
-
 #include "./DistMatrix/Block.hpp"
 #include "./DistMatrix/Block/CIRC_CIRC.hpp"
 #include "./DistMatrix/Block/MC_MR.hpp"
@@ -56,6 +43,21 @@ class DistMultiVec;
 #include "./DistMatrix/Block/STAR_VR.hpp"
 #include "./DistMatrix/Block/VC_STAR.hpp"
 #include "./DistMatrix/Block/VR_STAR.hpp"
+#include "./DistMatrix/Element.hpp"
+#include "./DistMatrix/Element/CIRC_CIRC.hpp"
+#include "./DistMatrix/Element/MC_MR.hpp"
+#include "./DistMatrix/Element/MC_STAR.hpp"
+#include "./DistMatrix/Element/MD_STAR.hpp"
+#include "./DistMatrix/Element/MR_MC.hpp"
+#include "./DistMatrix/Element/MR_STAR.hpp"
+#include "./DistMatrix/Element/STAR_MC.hpp"
+#include "./DistMatrix/Element/STAR_MD.hpp"
+#include "./DistMatrix/Element/STAR_MR.hpp"
+#include "./DistMatrix/Element/STAR_STAR.hpp"
+#include "./DistMatrix/Element/STAR_VC.hpp"
+#include "./DistMatrix/Element/STAR_VR.hpp"
+#include "./DistMatrix/Element/VC_STAR.hpp"
+#include "./DistMatrix/Element/VR_STAR.hpp"
 
 namespace El {
 

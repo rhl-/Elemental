@@ -10,7 +10,18 @@
 #ifndef EL_IMPORTS_MPI_HPP
 #define EL_IMPORTS_MPI_HPP
 
+#include <algorithm>
+#include <complex>
+#include <functional>
+#include <vector>
+
+#include "El/core/Element/decl.hpp"
+#include "mpi.h"
+
 namespace El {
+
+template <typename Real> struct Entry;
+template <typename Real> struct ValueInt;
 
 using std::function;
 using std::vector;

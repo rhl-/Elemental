@@ -9,10 +9,28 @@
 #ifndef EL_BLAS_GETSUBMATRIX_HPP
 #define EL_BLAS_GETSUBMATRIX_HPP
 
+#include <iosfwd>
+#include <memory>
+#include <vector>
+
+#include "El/core.hpp"
+#include "El/core/./DistMatrix/Abstract.hpp"
+#include "El/core/./DistMatrix/Element.hpp"
+#include "El/core/Matrix.hpp"
+#include "El/core/View.hpp"
+#include "El/core/environment/decl.hpp"
+#include "El/core/environment/impl.hpp"
+#include "El/core/types.hpp"
+
 namespace El {
 
 // Contiguous
 // ==========
+class Grid;
+template <typename T> class DistMultiVec;
+template <typename T> class DistSparseMatrix;
+template <typename T> class SparseMatrix;
+
 template<typename T>
 void GetSubmatrix
 ( const Matrix<T>& A,

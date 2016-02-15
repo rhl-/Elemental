@@ -9,6 +9,11 @@
 #ifndef EL_EUCLIDEANMIN_HPP
 #define EL_EUCLIDEANMIN_HPP
 
+#include "El/core.hpp"
+#include "El/core/Element/decl.hpp"
+#include "El/core/Element/impl.hpp"
+#include "El/core/limits.hpp"
+#include "El/core/types.hpp"
 #include "El/lapack_like/factor.hpp"
 
 namespace El {
@@ -23,6 +28,10 @@ namespace El {
 //
 //    min_X || X ||_F s.t. op(A) X = B.
 //
+template <typename T> class DistMultiVec;
+template <typename T> class DistSparseMatrix;
+template <typename T> class SparseMatrix;
+
 template<typename F>
 void LeastSquares
 ( Orientation orientation, 

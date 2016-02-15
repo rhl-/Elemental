@@ -8,6 +8,9 @@
 */
 #ifndef EL_ENVIRONMENT_DECL_HPP
 #define EL_ENVIRONMENT_DECL_HPP
+#include <El/core/imports/mpi.hpp>
+#include <El/core/imports/choice.hpp>
+#include <El/core/imports/mpi_choice.hpp>
 
 namespace El {
 

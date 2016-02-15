@@ -10,6 +10,10 @@
 #define EL_LIMITS_HPP
 
 #include <climits> // for INT_MIN et al. due to the Intel C++11 limitations
+#include <cmath>
+#include <limits>
+
+#include "El/core/Element/decl.hpp"
 
 namespace El {
 
@@ -24,6 +28,7 @@ struct IsFixedPrecision<BigFloat>
 
 template<typename Real>
 struct MantissaBits;
+
 template<> struct MantissaBits<float>
 { static const unsigned value = 24; };
 template<> struct MantissaBits<double>

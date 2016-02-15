@@ -9,7 +9,21 @@
 #ifndef EL_BLAS_AXPYTRAPEZOID_HPP
 #define EL_BLAS_AXPYTRAPEZOID_HPP
 
+#include <iosfwd>
+#include <memory>
+
+#include "El/core.hpp"
+#include "El/core/./DistMatrix/Abstract.hpp"
+#include "El/core/./DistMatrix/Element.hpp"
+#include "El/core/Matrix.hpp"
+#include "El/core/environment/decl.hpp"
+#include "El/core/imports/blas.hpp"
+#include "El/core/types.hpp"
+
 namespace El {
+
+template <typename T> class DistSparseMatrix;
+template <typename T> class SparseMatrix;
 
 template<typename T,typename S>
 void AxpyTrapezoid

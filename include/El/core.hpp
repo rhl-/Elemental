@@ -12,7 +12,6 @@
 // This would ideally be included within core/imports/mpi.hpp, but it is 
 // well-known that this must often be included first.
 #include <mpi.h>
-
 #include <array>
 #include <cmath>
 #include <complex>
@@ -24,10 +23,10 @@
 #include <functional>
 #include <iostream>
 #include <memory>
+#include <random>
 #include <sstream>
 #include <stdexcept>
 #include <string>
-#include <random>
 #include <type_traits> // std::enable_if
 #include <vector>
 
@@ -84,71 +83,62 @@ typedef __float128 Quad;
 
 } // namespace El
 
-// Declare the intertwined core parts of our library
-#include "El/core/imports/valgrind.hpp"
-#include "El/core/imports/omp.hpp"
-#include "El/core/imports/qd.hpp"
-#include "El/core/imports/mpc.hpp"
-#include "El/core/Memory.hpp"
 #include "El/core/Element/decl.hpp"
-#include "El/core/types.hpp"
+#include "El/core/Memory.hpp"
 #include "El/core/Serialize.hpp"
-#include "El/core/imports/mpi.hpp"
-#include "El/core/imports/choice.hpp"
-#include "El/core/imports/mpi_choice.hpp"
-#include "El/core/environment/decl.hpp"
-
 #include "El/core/Timer.hpp"
-#include "El/core/indexing/decl.hpp"
+#include "El/core/environment/decl.hpp"
 #include "El/core/imports/blas.hpp"
-#include "El/core/imports/lapack.hpp"
+#include "El/core/imports/choice.hpp"
 #include "El/core/imports/flame.hpp"
+#include "El/core/imports/lapack.hpp"
 #include "El/core/imports/mkl.hpp"
+#include "El/core/imports/mpc.hpp"
+#include "El/core/imports/mpi.hpp"
+#include "El/core/imports/mpi_choice.hpp"
+#include "El/core/imports/omp.hpp"
 #include "El/core/imports/openblas.hpp"
 #include "El/core/imports/pmrrr.hpp"
+#include "El/core/imports/qd.hpp"
 #include "El/core/imports/scalapack.hpp"
-
+// Declare the intertwined core parts of our library
+#include "El/core/imports/valgrind.hpp"
+#include "El/core/indexing/decl.hpp"
 #include "El/core/limits.hpp"
+#include "El/core/types.hpp"
 
 namespace El {
 
-template<typename T=double> class Matrix;
-
-template<typename T=double> class AbstractDistMatrix;
-
-template<typename T=double> class ElementalMatrix;
-template<typename T=double> class BlockMatrix;
-
 template<typename T=double,Dist U=MC,Dist V=MR,DistWrap wrap=ELEMENT>
 class DistMatrix;
+template<typename T=double> class AbstractDistMatrix;
+template<typename T=double> class BlockMatrix;
+template<typename T=double> class ElementalMatrix;
+template<typename T=double> class Matrix;
 
 } // namespace El
 
-#include "El/core/Matrix.hpp"
-#include "El/core/Grid.hpp"
+#include "El/core/DistGraph.hpp"
+#include "El/core/DistMap.hpp"
 #include "El/core/DistMatrix.hpp"
-#include "El/core/Proxy.hpp"
-
+#include "El/core/DistMultiVec.hpp"
+#include "El/core/DistSparseMatrix.hpp"
 // Implement the intertwined parts of the library
 #include "El/core/Element/impl.hpp"
-#include "El/core/environment/impl.hpp"
-#include "El/core/indexing/impl.hpp"
-
-// Declare and implement the decoupled parts of the core of the library
-// (perhaps these should be moved into their own directory?)
-#include "El/core/View.hpp"
 #include "El/core/FlamePart.hpp"
-#include "El/core/random/decl.hpp"
-#include "El/core/random/impl.hpp"
-
 #include "El/core/Graph.hpp"
+#include "El/core/Grid.hpp"
+#include "El/core/Matrix.hpp"
+#include "El/core/Proxy.hpp"
 // TODO: Sequential map
 //#include "El/core/Map.hpp"
 #include "El/core/SparseMatrix.hpp"
-
-#include "El/core/DistGraph.hpp"
-#include "El/core/DistMap.hpp"
-#include "El/core/DistMultiVec.hpp"
-#include "El/core/DistSparseMatrix.hpp"
+// Declare and implement the decoupled parts of the core of the library
+// (perhaps these should be moved into their own directory?)
+#include "El/core/View.hpp"
+#include "El/core/environment/impl.hpp"
+#include "El/core/indexing/impl.hpp"
+#include "El/core/random/decl.hpp"
+#include "El/core/random/impl.hpp"
 
 #endif // ifndef EL_CORE_HPP

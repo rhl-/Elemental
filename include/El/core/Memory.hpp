@@ -9,6 +9,8 @@
 #ifndef EL_MEMORY_HPP
 #define EL_MEMORY_HPP
 
+#include <stddef.h>
+
 namespace El {
 
 template<typename G>

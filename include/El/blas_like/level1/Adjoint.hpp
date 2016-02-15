@@ -9,7 +9,19 @@
 #ifndef EL_BLAS_ADJOINT_HPP
 #define EL_BLAS_ADJOINT_HPP
 
+#include <iosfwd>
+
+#include "El/core.hpp"
+#include "El/core/./DistMatrix/Abstract.hpp"
+#include "El/core/./DistMatrix/Block.hpp"
+#include "El/core/./DistMatrix/Element.hpp"
+#include "El/core/Matrix.hpp"
+#include "El/core/environment/decl.hpp"
+
 namespace El {
+
+template <typename T> class DistSparseMatrix;
+template <typename T> class SparseMatrix;
 
 template<typename T>
 void Adjoint( const Matrix<T>& A, Matrix<T>& B )

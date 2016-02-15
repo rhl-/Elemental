@@ -9,6 +9,17 @@
 #ifndef EL_BLAS1_COPYINTERNAL_DECL_HPP
 #define EL_BLAS1_COPYINTERNAL_DECL_HPP
 
+#include "El/core/./DistMatrix/Abstract.hpp"
+#include "El/core/./DistMatrix/Block.hpp"
+#include "El/core/./DistMatrix/Element.hpp"
+#include "El/core/Element/decl.hpp"
+#include "El/core/imports/mpi.hpp"
+#include "El/core/types.hpp"
+
+namespace El {
+template <typename T = double, El::DistNS::Dist U = MC, El::DistNS::Dist V = MR, El::DistWrapNS::DistWrap wrap = ELEMENT> class DistMatrix;
+}  // namespace El
+
 namespace El {
 
 namespace copy {

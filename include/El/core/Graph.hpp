@@ -11,7 +11,13 @@
 #ifndef EL_CORE_GRAPH_DECL_HPP
 #define EL_CORE_GRAPH_DECL_HPP
 
+#include <functional>
 #include <set>
+#include <utility>
+#include <vector>
+
+#include "El/core/imports/mpi.hpp"
+#include "El/core/types.hpp"
 
 namespace El {
 
@@ -20,9 +26,9 @@ using std::set;
 // Forward declaration
 class DistGraph;
 template<typename T>
-class SparseMatrix;
-template<typename T>
 class DistSparseMatrix;
+template<typename T>
+class SparseMatrix;
 
 class Graph
 {

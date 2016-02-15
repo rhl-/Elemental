@@ -8,7 +8,7 @@
 */
 #ifndef EL_ELEMENT_DECL_HPP
 #define EL_ELEMENT_DECL_HPP
-
+#include <El/core/imports/mpc.hpp>
 namespace El {
 
 template<typename Real>

@@ -9,10 +9,19 @@
 #ifndef EL_EQUILIBRATE_HPP
 #define EL_EQUILIBRATE_HPP
 
+#include "El/core.hpp"
+#include "El/core/./DistMatrix/Element.hpp"
+#include "El/core/Element/decl.hpp"
+#include "El/core/Matrix.hpp"
+
 namespace El {
 
 // Ruiz scaling
 // ============
+template <typename T> class DistMultiVec;
+template <typename T> class DistSparseMatrix;
+template <typename T> class SparseMatrix;
+
 template<typename F>
 void RuizEquil
 ( Matrix<F>& A,

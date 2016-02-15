@@ -9,6 +9,19 @@
 #ifndef EL_SOLVE_FGMRES_HPP
 #define EL_SOLVE_FGMRES_HPP
 
+#include <ostream>
+
+#include "El/core.hpp"
+#include "El/core/DistMultiVec.hpp"
+#include "El/core/Element/decl.hpp"
+#include "El/core/Element/impl.hpp"
+#include "El/core/Matrix.hpp"
+#include "El/core/Timer.hpp"
+#include "El/core/environment/decl.hpp"
+#include "El/core/imports/lapack.hpp"
+#include "El/core/imports/mpi.hpp"
+#include "El/core/limits.hpp"
+#include "El/core/types.hpp"
 // The pseudocode for Flexible GMRES can be found in "Algorithm 2.2" in
 //   Youcef Saad
 //   "A flexible inner-outer preconditioned GMRES algorithm"

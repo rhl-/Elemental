@@ -9,7 +9,17 @@
 #ifndef EL_BLAS_SHIFTDIAGONAL_HPP
 #define EL_BLAS_SHIFTDIAGONAL_HPP
 
+#include <iosfwd>
+
+#include "El/core.hpp"
+#include "El/core/./DistMatrix/Abstract.hpp"
+#include "El/core/Matrix.hpp"
+#include "El/core/environment/decl.hpp"
+
 namespace El {
+
+template <typename T> class DistSparseMatrix;
+template <typename T> class SparseMatrix;
 
 template<typename T,typename S>
 void ShiftDiagonal( Matrix<T>& A, S alpha, Int offset )

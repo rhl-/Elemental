@@ -9,7 +9,22 @@
 #ifndef EL_BLAS_SCALE_HPP
 #define EL_BLAS_SCALE_HPP
 
+#include <iosfwd>
+#include <vector>
+
+#include "El/core.hpp"
+#include "El/core/./DistMatrix/Abstract.hpp"
+#include "El/core/Element/decl.hpp"
+#include "El/core/Matrix.hpp"
+#include "El/core/environment/decl.hpp"
+#include "El/core/imports/blas.hpp"
+#include "El/core/imports/mpi.hpp"
+
 namespace El {
+
+template <typename T> class DistMultiVec;
+template <typename T> class DistSparseMatrix;
+template <typename T> class SparseMatrix;
 
 template<typename T,typename S>
 void Scale( S alphaS, Matrix<T>& A )

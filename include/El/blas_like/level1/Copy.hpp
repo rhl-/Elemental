@@ -9,11 +9,31 @@
 #ifndef EL_BLAS_COPY_HPP
 #define EL_BLAS_COPY_HPP
 
-#include "./Copy/internal_decl.hpp"
+#include <functional>
+#include <ostream>
+#include <vector>
+
 #include "./Copy/GeneralPurpose.hpp"
+#include "./Copy/internal_decl.hpp"
 #include "./Copy/util.hpp"
+#include "El/core.hpp"
+#include "El/core/./DistMatrix/Abstract.hpp"
+#include "El/core/./DistMatrix/Block.hpp"
+#include "El/core/./DistMatrix/Element.hpp"
+#include "El/core/Element/decl.hpp"
+#include "El/core/Matrix.hpp"
+#include "El/core/environment/decl.hpp"
+#include "El/core/environment/impl.hpp"
+#include "El/core/imports/lapack.hpp"
+#include "El/core/imports/mpi.hpp"
+#include "El/core/types.hpp"
 
 namespace El {
+
+template <typename T = double, El::DistNS::Dist U = MC, El::DistNS::Dist V = MR, El::DistWrapNS::DistWrap wrap = ELEMENT> class DistMatrix;
+template <typename T> class DistMultiVec;
+template <typename T> class DistSparseMatrix;
+template <typename T> class SparseMatrix;
 
 template<typename T>
 void Copy( const Matrix<T>& A, Matrix<T>& B )

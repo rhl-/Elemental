@@ -9,6 +9,13 @@
 #ifndef EL_CORE_PROXY_HPP
 #define EL_CORE_PROXY_HPP
 
+#include <exception>
+
+#include "El/core/./DistMatrix/Abstract.hpp"
+#include "El/core/Element/decl.hpp"
+#include "El/core/Matrix.hpp"
+#include "El/core/environment/decl.hpp"
+#include "El/core/types.hpp"
 // TODO: Split into several files
 
 namespace El {

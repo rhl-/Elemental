@@ -9,6 +9,18 @@
 #ifndef EL_OPTIMIZATION_UTIL_CONE_HPP
 #define EL_OPTIMIZATION_UTIL_CONE_HPP
 
+#include "El/core.hpp"
+#include "El/core/./DistMatrix/Element.hpp"
+#include "El/core/Element/decl.hpp"
+#include "El/core/Matrix.hpp"
+#include "El/core/imports/mpi.hpp"
+
+namespace El {
+template <typename T> class DistMultiVec;
+template <typename T> class DistSparseMatrix;
+template <typename T> class SparseMatrix;
+}  // namespace El
+
 namespace El {
 namespace cone {
 

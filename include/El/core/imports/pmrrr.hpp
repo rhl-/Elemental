@@ -9,6 +9,8 @@
 #ifndef EL_IMPORTS_PMRRR_HPP
 #define EL_IMPORTS_PMRRR_HPP
 
+#include "El/core/imports/mpi.hpp"
+
 namespace El {
 namespace herm_tridiag_eig {
 

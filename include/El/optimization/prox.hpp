@@ -9,6 +9,13 @@
 #ifndef EL_OPTIMIZATION_PROX_HPP
 #define EL_OPTIMIZATION_PROX_HPP
 
+#include "El/core.hpp"
+#include "El/core/./DistMatrix/Abstract.hpp"
+#include "El/core/./DistMatrix/Element.hpp"
+#include "El/core/Element/decl.hpp"
+#include "El/core/Matrix.hpp"
+#include "El/core/types.hpp"
+
 namespace El {
 
 // Proximal maps
@@ -16,6 +23,9 @@ namespace El {
 
 // Clipping
 // --------
+template <typename T = double, El::DistNS::Dist U = MC, El::DistNS::Dist V = MR, El::DistWrapNS::DistWrap wrap = ELEMENT> class DistMatrix;
+template <typename T> class DistMultiVec;
+
 template<typename Real>
 void LowerClip( Matrix<Real>& X, Real lowerBound=0 );
 template<typename Real>

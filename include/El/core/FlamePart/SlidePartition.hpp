@@ -9,6 +9,9 @@
 #ifndef EL_FLAMEPART_SLIDEPARTITION_HPP
 #define EL_FLAMEPART_SLIDEPARTITION_HPP
 
+#include "El/core/./DistMatrix/Element.hpp"
+#include "El/core/Matrix.hpp"
+
 namespace El {
 
 // To make our life easier. Undef'd at the bottom of the header

@@ -9,7 +9,17 @@
 #ifndef EL_BLAS_ADJOINTAXPY_HPP
 #define EL_BLAS_ADJOINTAXPY_HPP
 
+#include <iosfwd>
+
+#include "El/core.hpp"
+#include "El/core/./DistMatrix/Element.hpp"
+#include "El/core/Matrix.hpp"
+#include "El/core/environment/decl.hpp"
+
 namespace El {
+
+template <typename T> class DistSparseMatrix;
+template <typename T> class SparseMatrix;
 
 template<typename T,typename S>
 void AdjointAxpy( S alphaS, const Matrix<T>& X, Matrix<T>& Y )

@@ -9,6 +9,19 @@
 #ifndef EL_BLAS3_HPP
 #define EL_BLAS3_HPP
 
+#include "El/core/./DistMatrix/Abstract.hpp"
+#include "El/core/./DistMatrix/Element.hpp"
+#include "El/core/Element/decl.hpp"
+#include "El/core/Matrix.hpp"
+#include "El/core/types.hpp"
+
+namespace El {
+template <typename T = double, El::DistNS::Dist U = MC, El::DistNS::Dist V = MR, El::DistWrapNS::DistWrap wrap = ELEMENT> class DistMatrix;
+template <typename T> class DistMultiVec;
+template <typename T> class DistSparseMatrix;
+template <typename T> class SparseMatrix;
+}  // namespace El
+
 namespace El {
 
 // Gemm

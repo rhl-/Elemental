@@ -8,6 +8,7 @@
 */
 #ifndef EL_IMPORTS_MPI_C_H
 #define EL_IMPORTS_MPI_C_H
+#include <El/core/types.h>
 
 #ifdef __cplusplus
 extern "C" {

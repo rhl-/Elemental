@@ -9,6 +9,13 @@
 #ifndef EL_BLAS_FILLDIAGONAL_HPP
 #define EL_BLAS_FILLDIAGONAL_HPP
 
+#include <iosfwd>
+
+#include "El/core.hpp"
+#include "El/core/./DistMatrix/Abstract.hpp"
+#include "El/core/Matrix.hpp"
+#include "El/core/environment/decl.hpp"
+
 namespace El {
 
 template<typename T>

@@ -9,7 +9,21 @@
 #ifndef EL_BLAS_GETDIAGONAL_HPP
 #define EL_BLAS_GETDIAGONAL_HPP
 
+#include <functional>
+#include <iosfwd>
+
+#include "El/core.hpp"
+#include "El/core/./DistMatrix/Element.hpp"
+#include "El/core/Element/decl.hpp"
+#include "El/core/Element/impl.hpp"
+#include "El/core/Matrix.hpp"
+#include "El/core/environment/decl.hpp"
+#include "El/core/imports/mpi.hpp"
+#include "El/core/types.hpp"
+
 namespace El {
+
+template <typename T = double, El::DistNS::Dist U = MC, El::DistNS::Dist V = MR, El::DistWrapNS::DistWrap wrap = ELEMENT> class DistMatrix;
 
 template<typename T>
 void GetDiagonal( const Matrix<T>& A, Matrix<T>& d, Int offset )

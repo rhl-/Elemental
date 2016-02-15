@@ -11,6 +11,13 @@
 #ifndef EL_CORE_SPARSEMATRIX_DECL_HPP
 #define EL_CORE_SPARSEMATRIX_DECL_HPP
 
+#include <functional>
+#include <vector>
+
+#include "El/core/Graph.hpp"
+#include "El/core/imports/mpi.hpp"
+#include "El/core/types.hpp"
+
 namespace El {
 
 // Forward declaration for constructor

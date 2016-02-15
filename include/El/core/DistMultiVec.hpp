@@ -11,6 +11,13 @@
 #ifndef EL_CORE_DISTMULTIVEC_DECL_HPP
 #define EL_CORE_DISTMULTIVEC_DECL_HPP
 
+#include <vector>
+
+#include "El/core/./DistMatrix/Abstract.hpp"
+#include "El/core/Matrix.hpp"
+#include "El/core/imports/mpi.hpp"
+#include "El/core/types.hpp"
+
 namespace El {
 
 // Use a simple 1d distribution where each process owns a fixed number of rows,

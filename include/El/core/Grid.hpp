@@ -10,6 +10,13 @@
 #ifndef EL_GRID_HPP
 #define EL_GRID_HPP
 
+#include <ostream>
+#include <vector>
+
+#include "El/core/environment/decl.hpp"
+#include "El/core/imports/mpi.hpp"
+#include "El/core/types.hpp"
+
 namespace El {
 
 class Grid

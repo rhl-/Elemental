@@ -9,6 +9,10 @@
 #ifndef EL_IMPORTS_SCALAPACK_HPP
 #define EL_IMPORTS_SCALAPACK_HPP
 
+#include <ostream>
+
+#include "El/core/environment/decl.hpp"
+
 namespace El {
 
 inline void AssertScaLAPACKSupport()

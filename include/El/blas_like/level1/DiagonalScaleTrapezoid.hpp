@@ -9,7 +9,23 @@
 #ifndef EL_BLAS_DIAGONALSCALETRAPEZOID_HPP
 #define EL_BLAS_DIAGONALSCALETRAPEZOID_HPP
 
+#include <iosfwd>
+
+#include "El/core.hpp"
+#include "El/core/./DistMatrix/Element.hpp"
+#include "El/core/Element/impl.hpp"
+#include "El/core/Matrix.hpp"
+#include "El/core/Proxy.hpp"
+#include "El/core/environment/decl.hpp"
+#include "El/core/imports/blas.hpp"
+#include "El/core/types.hpp"
+
 namespace El {
+
+template <typename T = double, El::DistNS::Dist U = MC, El::DistNS::Dist V = MR, El::DistWrapNS::DistWrap wrap = ELEMENT> class DistMatrix;
+template <typename T> class DistMultiVec;
+template <typename T> class DistSparseMatrix;
+template <typename T> class SparseMatrix;
 
 template<typename TDiag,typename T>
 void DiagonalScaleTrapezoid

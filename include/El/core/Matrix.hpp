@@ -9,6 +9,12 @@
 #ifndef EL_MATRIX_HPP
 #define EL_MATRIX_HPP
 
+#include <vector>
+
+#include "El/core/Element/decl.hpp"
+#include "El/core/Memory.hpp"
+#include "El/core/types.hpp"
+
 namespace El {
 
 // Matrix base for arbitrary rings

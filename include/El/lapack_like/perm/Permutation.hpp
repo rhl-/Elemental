@@ -9,6 +9,10 @@
 #ifndef EL_PERM_PERMUTATION_HPP
 #define EL_PERM_PERMUTATION_HPP
 
+#include "El/core.hpp"
+#include "El/core/Matrix.hpp"
+#include "El/core/types.hpp"
+
 namespace El {
 
 class Permutation

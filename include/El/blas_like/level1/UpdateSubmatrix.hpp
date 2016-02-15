@@ -9,6 +9,14 @@
 #ifndef EL_BLAS_UPDATESUBMATRIX_HPP
 #define EL_BLAS_UPDATESUBMATRIX_HPP
 
+#include <iosfwd>
+#include <vector>
+
+#include "El/core.hpp"
+#include "El/core/./DistMatrix/Abstract.hpp"
+#include "El/core/Matrix.hpp"
+#include "El/core/environment/decl.hpp"
+
 namespace El {
 
 template<typename T>

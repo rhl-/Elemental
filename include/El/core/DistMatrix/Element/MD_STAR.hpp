@@ -9,6 +9,14 @@
 #ifndef EL_DISTMATRIX_ELEMENTAL_MD_STAR_HPP
 #define EL_DISTMATRIX_ELEMENTAL_MD_STAR_HPP
 
+#include <vector>
+
+#include "El/core/./DistMatrix/Abstract.hpp"
+#include "El/core/./DistMatrix/Element.hpp"
+#include "El/core/Grid.hpp"
+#include "El/core/imports/mpi.hpp"
+#include "El/core/types.hpp"
+
 namespace El {
 
 // Partial specialization to A[MD,* ].
@@ -18,6 +26,8 @@ namespace El {
 // of a sufficiently large distributed matrix is distributed amongst the 
 // entire process grid if and only if the dimensions of the process grid
 // are coprime.
+//template <typename T = double, El::DistNS::Dist U = MC, El::DistNS::Dist V = MR, El::DistWrapNS::DistWrap wrap = ELEMENT> class DistMatrix;
+
 template<typename T>
 class DistMatrix<T,MD,STAR> : public ElementalMatrix<T>
 {

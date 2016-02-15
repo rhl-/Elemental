@@ -9,6 +9,14 @@
 #ifndef EL_DISTMATRIX_ELEMENTAL_STAR_MR_HPP
 #define EL_DISTMATRIX_ELEMENTAL_STAR_MR_HPP
 
+#include <vector>
+
+#include "El/core/./DistMatrix/Abstract.hpp"
+#include "El/core/./DistMatrix/Element.hpp"
+#include "El/core/Grid.hpp"
+#include "El/core/imports/mpi.hpp"
+#include "El/core/types.hpp"
+
 namespace El {
 
 // Partial specialization to A[* ,MR].
@@ -16,6 +24,8 @@ namespace El {
 // The columns of these distributed matrices will be replicated on all 
 // processes (*), and the rows will be distributed like "Matrix Rows" (MR).
 // Thus the rows will be distributed among rows of the process grid.
+//template <typename T = double, El::DistNS::Dist U = MC, El::DistNS::Dist V = MR, El::DistWrapNS::DistWrap wrap = ELEMENT> class DistMatrix;
+
 template<typename T>
 class DistMatrix<T,STAR,MR> : public ElementalMatrix<T>
 {

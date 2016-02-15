@@ -9,6 +9,11 @@
 #ifndef EL_REFLECT_HPP
 #define EL_REFLECT_HPP
 
+#include "El/core.hpp"
+#include "El/core/./DistMatrix/Element.hpp"
+#include "El/core/Matrix.hpp"
+#include "El/core/types.hpp"
+
 namespace El {
 
 // ApplyPackedReflectors

@@ -9,6 +9,16 @@
 #ifndef EL_SPECTRAL_PRODUCT_LANCZOS_HPP
 #define EL_SPECTRAL_PRODUCT_LANCZOS_HPP
 
+#include <iosfwd>
+
+#include "El/core.hpp"
+#include "El/core/./DistMatrix/Element.hpp"
+#include "El/core/DistMultiVec.hpp"
+#include "El/core/Element/decl.hpp"
+#include "El/core/Matrix.hpp"
+#include "El/core/environment/decl.hpp"
+#include "El/core/imports/mpi.hpp"
+
 namespace El {
 
 template<typename F,class ApplyAType,class ApplyAAdjType>

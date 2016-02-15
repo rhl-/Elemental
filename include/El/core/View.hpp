@@ -9,6 +9,17 @@
 #ifndef EL_VIEW_HPP
 #define EL_VIEW_HPP
 
+#include <iosfwd>
+
+#include "El/core/./DistMatrix/Abstract.hpp"
+#include "El/core/./DistMatrix/Block.hpp"
+#include "El/core/./DistMatrix/Element.hpp"
+#include "El/core/DistMatrix.hpp"
+#include "El/core/Matrix.hpp"
+#include "El/core/environment/decl.hpp"
+#include "El/core/indexing/impl.hpp"
+#include "El/core/types.hpp"
+
 namespace El {
 
 // View an entire matrix
@@ -16,6 +27,8 @@ namespace El {
 
 // (Sequential) matrix
 // -------------------
+
+//template <typename T = double, El::DistNS::Dist U = MC, El::DistNS::Dist V = MR, El::DistWrapNS::DistWrap wrap = ELEMENT> class DistMatrix;
 
 template<typename T>
 inline void View( Matrix<T>& A, Matrix<T>& B )

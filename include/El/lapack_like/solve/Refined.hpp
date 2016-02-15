@@ -9,6 +9,15 @@
 #ifndef EL_SOLVE_REFINED_HPP
 #define EL_SOLVE_REFINED_HPP
 
+#include <ostream>
+
+#include "El/core.hpp"
+#include "El/core/DistMultiVec.hpp"
+#include "El/core/Element/decl.hpp"
+#include "El/core/Matrix.hpp"
+#include "El/core/environment/decl.hpp"
+#include "El/core/imports/mpi.hpp"
+#include "El/core/types.hpp"
 // The following routines each have three underlying implementations:
 //
 //  1) a single right-hand side,

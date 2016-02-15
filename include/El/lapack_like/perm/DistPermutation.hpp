@@ -10,8 +10,22 @@
 #define EL_PERM_DISTPERMUTATION_HPP
 
 #include <map>
+#include <utility>
+#include <vector>
+
+#include "El/core.hpp"
+#include "El/core/./DistMatrix/Abstract.hpp"
+#include "El/core/./DistMatrix/Element.hpp"
+#include "El/core/./DistMatrix/Element/STAR_VC.hpp"
+#include "El/core/./DistMatrix/Element/VC_STAR.hpp"
+#include "El/core/Grid.hpp"
+#include "El/core/imports/mpi.hpp"
+#include "El/core/types.hpp"
 
 namespace El {
+
+class Permutation;
+template <typename T = double, El::DistNS::Dist U = MC, El::DistNS::Dist V = MR, El::DistWrapNS::DistWrap wrap = ELEMENT> class DistMatrix;
 
 struct PermutationMeta
 {

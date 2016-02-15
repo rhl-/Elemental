@@ -9,13 +9,24 @@
 #ifndef EL_SOLVE_HPP
 #define EL_SOLVE_HPP
 
-#include "El/lapack_like/factor.hpp"
+#include "El/core.hpp"
+#include "El/core/Element/decl.hpp"
+#include "El/core/types.hpp"
 #include "El/lapack_like/euclidean_min.hpp"
+#include "El/lapack_like/factor.hpp"
 
 namespace El {
 
 // Linear
 // ======
+struct BisectCtrl;
+template <typename Real> struct LDLPivotCtrl;
+template <typename Real> struct LeastSquaresCtrl;
+template <typename T = double, El::DistNS::Dist U = MC, El::DistNS::Dist V = MR, El::DistWrapNS::DistWrap wrap = ELEMENT> class DistMatrix;
+template <typename T> class DistMultiVec;
+template <typename T> class DistSparseMatrix;
+template <typename T> class SparseMatrix;
+
 template<typename F>
 void LinearSolve( const Matrix<F>& A, Matrix<F>& B );
 template<typename F>

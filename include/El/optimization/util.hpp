@@ -12,6 +12,10 @@
 #include "./util/cone.hpp"
 #include "./util/pos_orth.hpp"
 #include "./util/soc.hpp"
+#include "El/core/./DistMatrix/Element.hpp"
+#include "El/core/Element/decl.hpp"
+#include "El/core/Matrix.hpp"
+#include "El/core/types.hpp"
 
 namespace El {
 

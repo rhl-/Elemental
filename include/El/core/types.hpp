@@ -9,6 +9,12 @@
 #ifndef EL_TYPES_HPP
 #define EL_TYPES_HPP
 
+#include <iosfwd>
+#include <stdexcept>
+
+#include "El/core/Element/decl.hpp"
+#include "El/core/Element/impl.hpp"
+
 namespace El {
 
 template<typename T>

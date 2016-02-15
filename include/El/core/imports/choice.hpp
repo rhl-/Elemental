@@ -12,6 +12,13 @@
 #define EL_IMPORTS_CHOICE_HPP
 
 #include <algorithm>
+#include <iostream>
+#include <stdexcept>
+#include <string>
+#include <vector>
+
+#include "El/core/Element/decl.hpp"
+#include "El/core/imports/mpi.hpp"
 
 namespace El {
 

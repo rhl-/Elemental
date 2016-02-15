@@ -8,7 +8,7 @@
 */
 #ifndef EL_SERIALIZE_HPP
 #define EL_SERIALIZE_HPP
-
+#include <El/core/types.hpp>
 namespace El {
 
 #ifdef EL_HAVE_MPC

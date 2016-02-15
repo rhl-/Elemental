@@ -9,7 +9,16 @@
 #ifndef EL_BLAS_DOT_HPP
 #define EL_BLAS_DOT_HPP
 
+#include <iosfwd>
+
+#include "El/core.hpp"
+#include "El/core/./DistMatrix/Element.hpp"
+#include "El/core/Matrix.hpp"
+#include "El/core/environment/decl.hpp"
+
 namespace El {
+
+template <typename T> class DistMultiVec;
 
 template<typename T> 
 T Dot( const Matrix<T>& A, const Matrix<T>& B )

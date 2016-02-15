@@ -8,6 +8,9 @@
 */
 #ifndef EL_ELEMENT_IMPL_HPP
 #define EL_ELEMENT_IMPL_HPP
+#include <ostream>
+#include <El/core/environment/decl.hpp>
+#include <El/core/imports/lapack.hpp>
 
 namespace El {
 
@@ -18,17 +21,17 @@ namespace El {
 // ---------------
 
 template<typename Real>
-ostream& operator<<( ostream& os, const Complex<Real>& alpha )
+std::ostream& operator<<( std::ostream& os, const Complex<Real>& alpha )
 {
     os << alpha.real() << "+" << alpha.imag() << "i";
     return os;
 }
 
 template<typename Real>
-istream& operator>>( istream& is, Complex<Real>& alpha )
+std::istream& operator>>( std::istream& is, Complex<Real>& alpha )
 {
     Real realPart, imagPart;
-    string token;
+    std::string token;
     std::stringstream tokenStream;
 
     // Grab the full token of the form "3+4i"

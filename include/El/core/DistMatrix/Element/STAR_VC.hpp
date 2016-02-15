@@ -9,6 +9,14 @@
 #ifndef EL_DISTMATRIX_ELEMENTAL_STAR_VC_HPP
 #define EL_DISTMATRIX_ELEMENTAL_STAR_VC_HPP
 
+#include <vector>
+
+#include "El/core/./DistMatrix/Abstract.hpp"
+#include "El/core/./DistMatrix/Element.hpp"
+#include "El/core/Grid.hpp"
+#include "El/core/imports/mpi.hpp"
+#include "El/core/types.hpp"
+
 namespace El {
 
 // Partial specialization to A[* ,VC].
@@ -16,6 +24,8 @@ namespace El {
 // The rows of these distributed matrices are spread throughout the 
 // process grid in a column-major fashion, while the columns are not 
 // distributed.
+//template <typename T = double, El::DistNS::Dist U = MC, El::DistNS::Dist V = MR, El::DistWrapNS::DistWrap wrap = ELEMENT> class DistMatrix;
+
 template<typename T>
 class DistMatrix<T,STAR,VC> : public ElementalMatrix<T>
 {

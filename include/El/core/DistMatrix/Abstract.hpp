@@ -9,6 +9,16 @@
 #ifndef EL_DISTMATRIX_ABSTRACT_HPP
 #define EL_DISTMATRIX_ABSTRACT_HPP
 
+#include <stddef.h>
+#include <vector>
+
+#include "El/core/Element/decl.hpp"
+#include "El/core/Grid.hpp"
+#include "El/core/Matrix.hpp"
+#include "El/core/environment/decl.hpp"
+#include "El/core/imports/mpi.hpp"
+#include "El/core/types.hpp"
+
 namespace El {
 
 struct DistData;

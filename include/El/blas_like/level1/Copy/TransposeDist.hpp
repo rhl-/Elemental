@@ -9,6 +9,21 @@
 #ifndef EL_BLAS_COPY_TRANSPOSEDIST_HPP
 #define EL_BLAS_COPY_TRANSPOSEDIST_HPP
 
+#include <iosfwd>
+#include <vector>
+
+#include "El/core.hpp"
+#include "El/core/environment/decl.hpp"
+#include "El/core/imports/mpi.hpp"
+#include "El/core/imports/omp.hpp"
+#include "El/core/indexing/impl.hpp"
+#include "El/core/types.hpp"
+
+namespace El {
+class Grid;
+template <typename T = double, El::DistNS::Dist U = MC, El::DistNS::Dist V = MR, El::DistWrapNS::DistWrap wrap = ELEMENT> class DistMatrix;
+}  // namespace El
+
 namespace El {
 namespace copy {
 

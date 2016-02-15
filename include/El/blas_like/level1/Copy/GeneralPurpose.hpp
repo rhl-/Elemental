@@ -9,6 +9,18 @@
 #ifndef EL_BLAS_COPY_GENERALPURPOSE_HPP
 #define EL_BLAS_COPY_GENERALPURPOSE_HPP
 
+#include <iosfwd>
+#include <vector>
+
+#include "El/core.hpp"
+#include "El/core/./DistMatrix/Abstract.hpp"
+#include "El/core/Element/decl.hpp"
+#include "El/core/Grid.hpp"
+#include "El/core/environment/decl.hpp"
+#include "El/core/environment/impl.hpp"
+#include "El/core/imports/mpi.hpp"
+#include "El/core/types.hpp"
+
 namespace El {
 namespace copy {
 

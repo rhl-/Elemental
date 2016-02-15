@@ -9,6 +9,17 @@
 #ifndef EL_OPTIMIZATION_UTIL_SOC_HPP
 #define EL_OPTIMIZATION_UTIL_SOC_HPP
 
+#include <limits>
+
+#include "El/core.hpp"
+#include "El/core/./DistMatrix/Element.hpp"
+#include "El/core/Element/decl.hpp"
+#include "El/core/Matrix.hpp"
+
+namespace El {
+template <typename T> class DistMultiVec;
+}  // namespace El
+
 namespace El {
 namespace soc {
 

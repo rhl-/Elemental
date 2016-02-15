@@ -12,13 +12,21 @@
 #define EL_CORE_DISTGRAPH_DECL_HPP
 
 #include <set>
+#include <utility>
+#include <vector>
+
+#include "El/core/Graph.hpp"
+#include "El/core/imports/mpi.hpp"
+#include "El/core/types.hpp"
 
 namespace El {
 
 using std::set;
 
 // Forward declare ldl::DistFront
-namespace ldl { template<typename F> struct DistFront; }
+namespace ldl {
+template<typename F> struct DistFront;
+}  // namespace ldl
 
 // Use a simple 1d distribution where each process owns a fixed number of 
 // sources:

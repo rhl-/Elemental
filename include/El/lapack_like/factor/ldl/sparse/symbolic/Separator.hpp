@@ -22,6 +22,14 @@
 #ifndef EL_UTIL_SEPARATOR_HPP
 #define EL_UTIL_SEPARATOR_HPP
 
+#include <exception>
+#include <iostream>
+#include <vector>
+
+#include "El/core.hpp"
+#include "El/core/environment/decl.hpp"
+#include "El/core/imports/mpi.hpp"
+
 namespace El {
 namespace ldl {
 

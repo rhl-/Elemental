@@ -17,7 +17,6 @@
 #include "./Exchange.hpp"
 #include "./Filter.hpp"
 #include "./Gather.hpp"
-
 #include "./PartialColAllGather.hpp"
 #include "./PartialColFilter.hpp"
 #include "./PartialRowAllGather.hpp"
@@ -27,8 +26,8 @@
 #include "./RowAllToAllPromote.hpp"
 #include "./RowFilter.hpp"
 #include "./Scatter.hpp"
-#include "./TranslateBetweenGrids.hpp"
 #include "./Translate.hpp"
+#include "./TranslateBetweenGrids.hpp"
 #include "./TransposeDist.hpp"
 
 #endif // ifndef EL_BLAS1_COPY_INTERNAL_IMPL_HPP

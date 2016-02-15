@@ -9,6 +9,20 @@
 #ifndef EL_OPTIMIZATION_UTIL_POS_ORTH_HPP
 #define EL_OPTIMIZATION_UTIL_POS_ORTH_HPP
 
+#include <limits>
+
+#include "El/core.hpp"
+#include "El/core/./DistMatrix/Abstract.hpp"
+#include "El/core/./DistMatrix/Element.hpp"
+#include "El/core/Element/decl.hpp"
+#include "El/core/Matrix.hpp"
+
+namespace El {
+template <typename T> class DistMultiVec;
+template <typename T> class DistSparseMatrix;
+template <typename T> class SparseMatrix;
+}  // namespace El
+
 namespace El {
 namespace pos_orth {
 

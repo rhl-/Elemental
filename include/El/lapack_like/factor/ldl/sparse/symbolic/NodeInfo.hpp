@@ -11,6 +11,15 @@
 #ifndef EL_FACTOR_LDL_SPARSE_SYMBOLIC_NODEINFO_HPP
 #define EL_FACTOR_LDL_SPARSE_SYMBOLIC_NODEINFO_HPP
 
+#include <exception>
+#include <iostream>
+#include <vector>
+
+#include "El/core.hpp"
+#include "El/core/Grid.hpp"
+#include "El/core/environment/decl.hpp"
+#include "El/core/imports/mpi.hpp"
+
 namespace El {
 namespace ldl {
 

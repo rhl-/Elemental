@@ -9,7 +9,18 @@
 #ifndef EL_BLAS_ENTRYWISEFILL_HPP
 #define EL_BLAS_ENTRYWISEFILL_HPP
 
+#include <functional>
+#include <iosfwd>
+
+#include "El/core.hpp"
+#include "El/core/./DistMatrix/Abstract.hpp"
+#include "El/core/Matrix.hpp"
+#include "El/core/environment/decl.hpp"
+#include "El/core/imports/mpi.hpp"
+
 namespace El {
+
+template <typename T> class DistMultiVec;
 
 template<typename T>
 void EntrywiseFill( Matrix<T>& A, function<T(void)> func )

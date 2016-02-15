@@ -9,6 +9,15 @@
 #ifndef EL_BLAS_TRANSPOSE_COLFILTER_HPP
 #define EL_BLAS_TRANSPOSE_COLFILTER_HPP
 
+#include <iosfwd>
+#include <memory>
+
+#include "El/core.hpp"
+#include "El/core/./DistMatrix/Block.hpp"
+#include "El/core/./DistMatrix/Element.hpp"
+#include "El/core/environment/decl.hpp"
+#include "El/core/types.hpp"
+
 namespace El {
 namespace transpose {
 

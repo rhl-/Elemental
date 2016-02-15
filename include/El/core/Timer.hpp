@@ -10,6 +10,9 @@
 #define EL_TIMER_HPP
 
 #include <chrono>
+#include <iosfwd>
+
+#include "El/core/environment/decl.hpp"
 
 namespace El {
 

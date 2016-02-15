@@ -9,9 +9,19 @@
 #ifndef EL_BLAS_DOTU_HPP
 #define EL_BLAS_DOTU_HPP
 
+#include <ostream>
+
+#include "El/core.hpp"
+#include "El/core/./DistMatrix/Element.hpp"
+#include "El/core/Matrix.hpp"
+#include "El/core/environment/decl.hpp"
+#include "El/core/imports/mpi.hpp"
+
 namespace El {
 
 // TODO: Think about using a more stable accumulation algorithm?
+
+template <typename T> class DistMultiVec;
 
 template<typename T> 
 T Dotu( const Matrix<T>& A, const Matrix<T>& B )

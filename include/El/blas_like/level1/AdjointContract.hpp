@@ -9,6 +9,13 @@
 #ifndef EL_BLAS_ADJOINTCONTRACT_HPP
 #define EL_BLAS_ADJOINTCONTRACT_HPP
 
+#include <iosfwd>
+
+#include "El/core.hpp"
+#include "El/core/./DistMatrix/Block.hpp"
+#include "El/core/./DistMatrix/Element.hpp"
+#include "El/core/environment/decl.hpp"
+
 namespace El {
 
 template<typename T>

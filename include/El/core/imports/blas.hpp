@@ -9,6 +9,10 @@
 #ifndef EL_IMPORTS_BLAS_HPP
 #define EL_IMPORTS_BLAS_HPP
 
+#include <complex>
+
+#include "El/core/Element/decl.hpp"
+
 namespace El {
 
 // NOTE: The EL_LAPACK macro is defined here since many of the BLAS overloads

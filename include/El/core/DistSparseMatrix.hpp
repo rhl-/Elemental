@@ -11,6 +11,15 @@
 #ifndef EL_CORE_DISTSPARSEMATRIX_DECL_HPP
 #define EL_CORE_DISTSPARSEMATRIX_DECL_HPP
 
+#include <functional>
+#include <vector>
+
+#include "El/core/DistGraph.hpp"
+#include "El/core/DistMap.hpp"
+#include "El/core/environment/impl.hpp"
+#include "El/core/imports/mpi.hpp"
+#include "El/core/types.hpp"
+
 namespace El {
 
 struct DistSparseMultMeta

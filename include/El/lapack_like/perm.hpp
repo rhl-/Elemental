@@ -9,14 +9,20 @@
 #ifndef EL_PERM_HPP
 #define EL_PERM_HPP
 
-#include "perm/Permutation.hpp"
+#include "El/core.hpp"
+#include "El/core/./DistMatrix/Abstract.hpp"
+#include "El/core/Matrix.hpp"
+#include "El/core/types.hpp"
 #include "perm/DistPermutation.hpp"
+#include "perm/Permutation.hpp"
 
 namespace El {
 
 // Convert a pivot sequence to a partial permutation vector
 // ========================================================
 // NOTE: These routine are now deprecated
+template <typename T = double, El::DistNS::Dist U = MC, El::DistNS::Dist V = MR, El::DistWrapNS::DistWrap wrap = ELEMENT> class DistMatrix;
+
 void PivotsToPartialPermutation
 ( const Matrix<Int>& pivots,
         Matrix<Int>& p,

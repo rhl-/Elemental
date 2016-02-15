@@ -9,6 +9,10 @@
 #ifndef EL_INDEXING_IMPL_HPP
 #define EL_INDEXING_IMPL_HPP
 
+#include <ostream>
+
+#include "El/core/environment/decl.hpp"
+
 namespace El {
 
 // Indexing for element-wise distributions

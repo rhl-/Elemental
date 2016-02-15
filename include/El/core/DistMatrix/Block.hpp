@@ -9,6 +9,11 @@
 #ifndef EL_DISTMATRIX_BLOCK_HPP
 #define EL_DISTMATRIX_BLOCK_HPP
 
+#include "El/core/./DistMatrix/Abstract.hpp"
+#include "El/core/Grid.hpp"
+#include "El/core/Matrix.hpp"
+#include "El/core/types.hpp"
+
 namespace El {
 
 template<typename T> 

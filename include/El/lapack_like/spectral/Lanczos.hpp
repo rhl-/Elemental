@@ -9,6 +9,22 @@
 #ifndef EL_SPECTRAL_LANCZOS_HPP
 #define EL_SPECTRAL_LANCZOS_HPP
 
+#include <iosfwd>
+
+#include "El/core.hpp"
+#include "El/core/./DistMatrix/Element.hpp"
+#include "El/core/DistMultiVec.hpp"
+#include "El/core/Element/decl.hpp"
+#include "El/core/Element/impl.hpp"
+#include "El/core/Matrix.hpp"
+#include "El/core/Proxy.hpp"
+#include "El/core/environment/decl.hpp"
+#include "El/core/imports/mpi.hpp"
+#include "El/core/indexing/impl.hpp"
+#include "El/core/limits.hpp"
+#include "El/core/random/impl.hpp"
+#include "El/core/types.hpp"
+
 namespace El {
 
 // Form 
