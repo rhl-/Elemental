@@ -9,11 +9,9 @@
    which can be found in the LICENSE file in the root directory, or at 
    http://opensource.org/licenses/BSD-2-Clause
 */
-
-#include "El.hpp"
-
-#include "./Gemv/Normal.hpp"
-#include "./Gemv/Transpose.hpp"
+#include <El/matrices.hpp>
+#include <El/blas_like/level2/Gemv/Normal.hpp>
+#include <El/blas_like/level2/Gemv/Transpose.hpp>
 
 namespace El {
 
@@ -79,9 +77,10 @@ void Gemv
 {
     DEBUG_ONLY(CSE cse("Gemv"))
     if( orientation == NORMAL )
-        Zeros( y, A.Height(), 1 );
+        y.Resize( A.Height(), 1);
     else
-        Zeros( y, A.Width(), 1 );
+        y.Resize( A.Width(), 1);
+    Zero(y);
     Gemv( orientation, alpha, A, x, T(0), y );
 }
 
@@ -109,9 +108,10 @@ void Gemv
     DEBUG_ONLY(CSE cse("Gemv"))
     y.AlignWith( A );
     if( orientation == NORMAL )
-        Zeros( y, A.Height(), 1 );
+        y.Resize( A.Height(), 1);
     else
-        Zeros( y, A.Width(), 1 );
+        y.Resize( A.Width(), 1);
+    Zero(y);
     Gemv( orientation, alpha, A, x, T(0), y );
 }
 
@@ -229,9 +229,10 @@ void Gemv
     DEBUG_ONLY(CSE cse("Gemv"))
     y.AlignWith( A );
     if( orientation == NORMAL )
-        Zeros( y, A.Height(), 1 );
+        y.Resize(A.Height(),1);
     else
-        Zeros( y, A.Width(), 1 );
+        y.Resize(A.Width(),1);
+    Zero(y);
     Gemv( orientation, alpha, A, x, T(0), y );
 }
 
@@ -284,6 +285,8 @@ void Gemv
 #define EL_ENABLE_BIGINT
 #define EL_ENABLE_BIGFLOAT
 #include "El/macros/Instantiate.h"
+
+#undef EL_EXTERN
 
 } // namespace El
 

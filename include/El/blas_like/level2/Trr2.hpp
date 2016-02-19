@@ -9,7 +9,8 @@
    which can be found in the LICENSE file in the root directory, or at 
    http://opensource.org/licenses/BSD-2-Clause
 */
-#include "El.hpp"
+
+#include <El/matrices.hpp>
 
 namespace El {
 
@@ -149,7 +150,6 @@ void Trr2
 # define EL_EXTERN extern
 #endif
 
-
 #define PROTO(T) \
   EL_EXTERN template void Trr2 \
   ( UpperOrLower uplo, \
@@ -166,6 +166,8 @@ void Trr2
 #define EL_ENABLE_BIGINT
 #define EL_ENABLE_BIGFLOAT
 #include "El/macros/Instantiate.h"
+
+#undef EL_EXTERN
 
 } // namespace El
 

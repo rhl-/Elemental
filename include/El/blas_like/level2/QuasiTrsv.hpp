@@ -9,12 +9,13 @@
    which can be found in the LICENSE file in the root directory, or at 
    http://opensource.org/licenses/BSD-2-Clause
 */
-#include "El.hpp"
 
-#include "./QuasiTrsv/LN.hpp"
-#include "./QuasiTrsv/LT.hpp"
-#include "./QuasiTrsv/UN.hpp"
-#include "./QuasiTrsv/UT.hpp"
+#include <El/matrices.hpp>
+
+#include <El/blas_like/level2/QuasiTrsv/LN.hpp>
+#include <El/blas_like/level2/QuasiTrsv/LT.hpp>
+#include <El/blas_like/level2/QuasiTrsv/UN.hpp>
+#include <El/blas_like/level2/QuasiTrsv/UT.hpp>
 
 namespace El {
 
@@ -85,6 +86,8 @@ void QuasiTrsv
 #define EL_ENABLE_QUAD
 #define EL_ENABLE_BIGFLOAT
 #include "El/macros/Instantiate.h"
+
+#undef EL_EXTERN
 
 } // namespace El
 

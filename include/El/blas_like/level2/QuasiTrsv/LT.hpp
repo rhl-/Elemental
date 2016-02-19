@@ -10,6 +10,7 @@
    http://opensource.org/licenses/BSD-2-Clause
 */
 
+#include <El/matrices.hpp>
 namespace El {
 namespace quasitrsv {
 

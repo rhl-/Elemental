@@ -9,12 +9,13 @@
    which can be found in the LICENSE file in the root directory, or at 
    http://opensource.org/licenses/BSD-2-Clause
 */
-#include "El.hpp"
 
-#include "./Trsv/LN.hpp"
-#include "./Trsv/LT.hpp"
-#include "./Trsv/UN.hpp"
-#include "./Trsv/UT.hpp"
+#include <El/matrices.hpp>
+
+#include <El/blas_like/level2/Trsv/LN.hpp>
+#include <El/blas_like/level2/Trsv/LT.hpp>
+#include <El/blas_like/level2/Trsv/UN.hpp>
+#include <El/blas_like/level2/Trsv/UT.hpp>
 
 namespace El {
 
@@ -85,6 +86,8 @@ void Trsv
 #define EL_ENABLE_QUAD
 #define EL_ENABLE_BIGFLOAT
 #include "El/macros/Instantiate.h"
+
+#undef EL_EXTERN
 
 } // namespace El
 
