@@ -82,18 +82,18 @@ void Fill( DistSparseMatrix<T>& A, T alpha )
 #endif
 
 #define PROTO(T) \
-  template void Fill( Matrix<T>& A, T alpha ); \
-  template void Fill( AbstractDistMatrix<T>& A, T alpha ); \
-  template void Fill( DistMultiVec<T>& A, T alpha ); \
-  template void Fill( SparseMatrix<T>& A, T alpha ); \
-  template void Fill( DistSparseMatrix<T>& A, T alpha );
+  EL_EXTERN template void Fill( Matrix<T>& A, T alpha ); \
+  EL_EXTERN template void Fill( AbstractDistMatrix<T>& A, T alpha ); \
+  EL_EXTERN template void Fill( DistMultiVec<T>& A, T alpha ); \
+  EL_EXTERN template void Fill( SparseMatrix<T>& A, T alpha ); \
+  EL_EXTERN template void Fill( DistSparseMatrix<T>& A, T alpha );
 
 #define EL_ENABLE_DOUBLEDOUBLE
 #define EL_ENABLE_QUADDOUBLE
 #define EL_ENABLE_QUAD
 #define EL_ENABLE_BIGINT
 #define EL_ENABLE_BIGFLOAT
-#include "El/macros/Instantiate.h"
+#include <El/macros/Instantiate.h>
 
 #undef EL_EXTERN
 
