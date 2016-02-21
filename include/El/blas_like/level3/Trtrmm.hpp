@@ -48,12 +48,18 @@ void Trtrmm( UpperOrLower uplo, ElementalMatrix<T>& A, bool conjugate )
 template<typename T>
 void Trtrmm( UpperOrLower uplo, DistMatrix<T,STAR,STAR>& A, bool conjugate )
 { Trtrmm( uplo, A.Matrix(), conjugate ); }
+#ifdef EL_INSTANTIATE_BLAS_LEVEL3
+# define EL_EXTERN
+#else
+# define EL_EXTERN extern
+#endif
+
 
 #define PROTO(T) \
-  template void Trtrmm( UpperOrLower uplo, Matrix<T>& A, bool conjugate ); \
-  template void Trtrmm \
+  EL_EXTERN template void Trtrmm( UpperOrLower uplo, Matrix<T>& A, bool conjugate ); \
+  EL_EXTERN template void Trtrmm \
   ( UpperOrLower uplo, ElementalMatrix<T>& A, bool conjugate ); \
-  template void Trtrmm \
+  EL_EXTERN template void Trtrmm \
   ( UpperOrLower uplo, DistMatrix<T,STAR,STAR>& A, bool conjugate );
 
 #define EL_ENABLE_DOUBLEDOUBLE
@@ -63,6 +69,7 @@ void Trtrmm( UpperOrLower uplo, DistMatrix<T,STAR,STAR>& A, bool conjugate )
 #define EL_ENABLE_BIGFLOAT
 #include "El/macros/Instantiate.h"
 
+#undef EL_EXTERN
 } // namespace El
 
 #endif /* EL_BLAS_LIKE_LEVEL3_TRTRMM_HPP */

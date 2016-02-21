@@ -55,34 +55,40 @@ void Trrk
     else
         trrk::TrrkTT( uplo, orientationOfA, orientationOfB, alpha, A, B, C );
 }
+#ifdef EL_INSTANTIATE_BLAS_LEVEL3
+# define EL_EXTERN
+#else
+# define EL_EXTERN extern
+#endif
+
 
 #define PROTO(T) \
-  template void Trrk \
+  EL_EXTERN template void Trrk \
   ( UpperOrLower uplo, \
     Orientation orientationOfA, Orientation orientationOfB, \
     T alpha, const Matrix<T>& A, const Matrix<T>& B, \
     T beta,        Matrix<T>& C ); \
-  template void Trrk \
+  EL_EXTERN template void Trrk \
   ( UpperOrLower uplo, \
     Orientation orientationOfA, Orientation orientationOfB, \
     T alpha, const ElementalMatrix<T>& A, const ElementalMatrix<T>& B, \
     T beta,        ElementalMatrix<T>& C ); \
-  template void LocalTrrk \
+  EL_EXTERN template void LocalTrrk \
    ( UpperOrLower uplo, \
      T alpha, const DistMatrix<T,MC,  STAR>& A, \
               const DistMatrix<T,STAR,MR  >& B, \
      T beta,        DistMatrix<T>& C ); \
-  template void LocalTrrk \
+  EL_EXTERN template void LocalTrrk \
   ( UpperOrLower uplo, Orientation orientationOfB, \
     T alpha, const DistMatrix<T,MC,STAR>& A, \
              const DistMatrix<T,MR,STAR>& B, \
     T beta,        DistMatrix<T>& C ); \
-  template void LocalTrrk \
+  EL_EXTERN template void LocalTrrk \
   ( UpperOrLower uplo, Orientation orientationOfA, \
     T alpha, const DistMatrix<T,STAR,MC>& A, \
              const DistMatrix<T,STAR,MR>& B, \
     T beta,        DistMatrix<T>& C ); \
-  template void LocalTrrk \
+  EL_EXTERN template void LocalTrrk \
   ( UpperOrLower uplo, \
     Orientation orientationOfA, Orientation orientationOfB, \
     T alpha, const DistMatrix<T,STAR,MC  >& A, \
@@ -96,6 +102,7 @@ void Trrk
 #define EL_ENABLE_BIGFLOAT
 #include "El/macros/Instantiate.h"
 
+#undef EL_EXTERN
 } // namespace El
 
 #endif /* EL_BLAS_LIKE_LEVEL3_TRRK_HPP */

@@ -97,21 +97,27 @@ void TwoSidedTrsm
     DEBUG_ONLY(CSE cse("TwoSidedTrsm"))
     twotrsm::ScaLAPACKHelper( uplo, diag, A, B );
 }
+#ifdef EL_INSTANTIATE_BLAS_LEVEL3
+# define EL_EXTERN
+#else
+# define EL_EXTERN extern
+#endif
+
 
 #define PROTO(F) \
-  template void TwoSidedTrsm \
+  EL_EXTERN template void TwoSidedTrsm \
   ( UpperOrLower uplo, UnitOrNonUnit diag, \
           Matrix<F>& A, \
     const Matrix<F>& B ); \
-  template void TwoSidedTrsm \
+  EL_EXTERN template void TwoSidedTrsm \
   ( UpperOrLower uplo, UnitOrNonUnit diag, \
           ElementalMatrix<F>& A, \
     const ElementalMatrix<F>& B ); \
-  template void TwoSidedTrsm \
+  EL_EXTERN template void TwoSidedTrsm \
   ( UpperOrLower uplo, UnitOrNonUnit diag, \
           DistMatrix<F,STAR,STAR>& A, \
     const DistMatrix<F,STAR,STAR>& B ); \
-  template void TwoSidedTrsm \
+  EL_EXTERN template void TwoSidedTrsm \
   ( UpperOrLower uplo, UnitOrNonUnit diag, \
           DistMatrix<F,MC,MR,BLOCK>& A, \
     const DistMatrix<F,MC,MR,BLOCK>& B );
@@ -122,6 +128,7 @@ void TwoSidedTrsm
 #define EL_ENABLE_QUAD
 #define EL_ENABLE_BIGFLOAT
 #include "El/macros/Instantiate.h"
+#undef EL_EXTERN
 
 } // namespace El
 

@@ -257,33 +257,39 @@ void LocalGemm
     LocalGemm( orientA, orientB, alpha, A, B, T(0), C );
 }
 
+#ifdef EL_INSTANTIATE_BLAS_LEVEL3
+# define EL_EXTERN
+#else
+# define EL_EXTERN extern
+#endif
+
 #define PROTO(T) \
-  template void Gemm \
+  EL_EXTERN template void Gemm \
   ( Orientation orientA, Orientation orientB, \
     T alpha, const Matrix<T>& A, \
              const Matrix<T>& B, \
     T beta,        Matrix<T>& C ); \
-  template void Gemm \
+  EL_EXTERN template void Gemm \
   ( Orientation orientA, Orientation orientB, \
     T alpha, const Matrix<T>& A, \
              const Matrix<T>& B, \
                    Matrix<T>& C ); \
-  template void Gemm \
+  EL_EXTERN template void Gemm \
   ( Orientation orientA, Orientation orientB, \
     T alpha, const ElementalMatrix<T>& A, \
              const ElementalMatrix<T>& B, \
     T beta,        ElementalMatrix<T>& C, GemmAlgorithm alg ); \
-  template void Gemm \
+  EL_EXTERN template void Gemm \
   ( Orientation orientA, Orientation orientB, \
     T alpha, const ElementalMatrix<T>& A, \
              const ElementalMatrix<T>& B, \
                    ElementalMatrix<T>& C, GemmAlgorithm alg ); \
-  template void LocalGemm \
+  EL_EXTERN template void LocalGemm \
   ( Orientation orientA, Orientation orientB, \
     T alpha, const ElementalMatrix<T>& A, \
              const ElementalMatrix<T>& B, \
     T beta,        ElementalMatrix<T>& C ); \
-  template void LocalGemm \
+  EL_EXTERN template void LocalGemm \
   ( Orientation orientA, Orientation orientB, \
     T alpha, const ElementalMatrix<T>& A, \
              const ElementalMatrix<T>& B, \
@@ -295,6 +301,8 @@ void LocalGemm
 #define EL_ENABLE_BIGINT
 #define EL_ENABLE_BIGFLOAT
 #include "El/macros/Instantiate.h"
+
+#undef EL_EXTERN
 
 } // namespace El
 

@@ -32,12 +32,19 @@ void Hemm
     Symm( side, uplo, alpha, A, B, beta, C, true );
 }
 
+#ifdef EL_INSTANTIATE_BLAS_LEVEL3
+# define EL_EXTERN
+#else
+# define EL_EXTERN extern
+#endif
+
+
 #define PROTO(T) \
-  template void Hemm \
+  EL_EXTERN template void Hemm \
   ( LeftOrRight side, UpperOrLower uplo, \
     T alpha, const Matrix<T>& A, const Matrix<T>& B, \
     T beta,        Matrix<T>& C ); \
-  template void Hemm \
+  EL_EXTERN template void Hemm \
   ( LeftOrRight side, UpperOrLower uplo, \
     T alpha, const ElementalMatrix<T>& A, const ElementalMatrix<T>& B, \
     T beta,        ElementalMatrix<T>& C );
@@ -48,6 +55,8 @@ void Hemm
 #define EL_ENABLE_BIGINT
 #define EL_ENABLE_BIGFLOAT
 #include "El/macros/Instantiate.h"
+
+#undef EL_EXTERN
 
 } // namespace El
 

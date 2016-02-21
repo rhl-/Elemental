@@ -93,14 +93,20 @@ void HermitianFromEVD
         LocalTrrk( uplo, F(1), Z1_MC_STAR, Z1Adj_STAR_MR, F(1), A );
     }
 }
+#ifdef EL_INSTANTIATE_BLAS_LEVEL3
+# define EL_EXTERN
+#else
+# define EL_EXTERN extern
+#endif
+
 
 #define PROTO(F) \
-  template void HermitianFromEVD \
+  EL_EXTERN template void HermitianFromEVD \
   ( UpperOrLower uplo, \
           Matrix<F>& A, \
     const Matrix<Base<F>>& w, \
     const Matrix<F>& Z ); \
-  template void HermitianFromEVD \
+  EL_EXTERN template void HermitianFromEVD \
   ( UpperOrLower uplo, \
           ElementalMatrix<F>& A, \
     const ElementalMatrix<Base<F>>& w, \
@@ -112,6 +118,7 @@ void HermitianFromEVD
 #define EL_ENABLE_QUAD
 #define EL_ENABLE_BIGFLOAT
 #include "El/macros/Instantiate.h"
+#undef EL_EXTERN
 
 } // namespace El
 

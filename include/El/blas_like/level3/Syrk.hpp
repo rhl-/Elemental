@@ -264,35 +264,41 @@ void Syrk
         Zeros( C, n, n );
     Syrk( uplo, orientation, alpha, A, T(0), C, conjugate );
 }
+#ifdef EL_INSTANTIATE_BLAS_LEVEL3
+# define EL_EXTERN
+#else
+# define EL_EXTERN extern
+#endif
+
 
 #define PROTO(T) \
-  template void Syrk \
+  EL_EXTERN template void Syrk \
   ( UpperOrLower uplo, Orientation orientation, \
     T alpha, const Matrix<T>& A, T beta, Matrix<T>& C, bool conjugate ); \
-  template void Syrk \
+  EL_EXTERN template void Syrk \
   ( UpperOrLower uplo, Orientation orientation, \
     T alpha, const Matrix<T>& A, Matrix<T>& C, bool conjugate ); \
-  template void Syrk \
+  EL_EXTERN template void Syrk \
   ( UpperOrLower uplo, Orientation orientation, \
     T alpha, const ElementalMatrix<T>& A, \
     T beta, ElementalMatrix<T>& C, bool conjugate ); \
-  template void Syrk \
+  EL_EXTERN template void Syrk \
   ( UpperOrLower uplo, Orientation orientation, \
     T alpha, const ElementalMatrix<T>& A, \
                    ElementalMatrix<T>& C, bool conjugate ); \
-  template void Syrk \
+  EL_EXTERN template void Syrk \
   ( UpperOrLower uplo, Orientation orientation, \
     T alpha, const SparseMatrix<T>& A, \
     T beta,        SparseMatrix<T>& C, bool conjugate ); \
-  template void Syrk \
+  EL_EXTERN template void Syrk \
   ( UpperOrLower uplo, Orientation orientation, \
     T alpha, const SparseMatrix<T>& A, \
                    SparseMatrix<T>& C, bool conjugate ); \
-  template void Syrk \
+  EL_EXTERN template void Syrk \
   ( UpperOrLower uplo, Orientation orientation, \
     T alpha, const DistSparseMatrix<T>& A, \
     T beta,        DistSparseMatrix<T>& C, bool conjugate ); \
-  template void Syrk \
+  EL_EXTERN template void Syrk \
   ( UpperOrLower uplo, Orientation orientation, \
     T alpha, const DistSparseMatrix<T>& A, \
                    DistSparseMatrix<T>& C, bool conjugate );
@@ -304,6 +310,7 @@ void Syrk
 #define EL_ENABLE_BIGFLOAT
 #include "El/macros/Instantiate.h"
 
+#undef EL_EXTERN
 } // namespace El
 
 #endif /* EL_BLAS_LIKE_LEVEL3_SYRK_HPP */

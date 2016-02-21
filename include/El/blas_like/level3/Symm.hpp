@@ -78,42 +78,48 @@ void Symm
     else
         symm::RU( alpha, A, B, C, conjugate );
 }
+#ifdef EL_INSTANTIATE_BLAS_LEVEL3
+# define EL_EXTERN
+#else
+# define EL_EXTERN extern
+#endif
+
 
 #define PROTO(T) \
-  template void Symm \
+  EL_EXTERN template void Symm \
   ( LeftOrRight side, UpperOrLower uplo, \
     T alpha, const Matrix<T>& A, \
              const Matrix<T>& B, \
     T beta,        Matrix<T>& C, \
     bool conjugate ); \
-  template void Symm \
+  EL_EXTERN template void Symm \
   ( LeftOrRight side, UpperOrLower uplo, \
     T alpha, const ElementalMatrix<T>& A, \
              const ElementalMatrix<T>& B, \
     T beta,        ElementalMatrix<T>& C, \
     bool conjugate ); \
-  template void symm::LocalAccumulateLL \
+  EL_EXTERN template void symm::LocalAccumulateLL \
   ( Orientation orientation, T alpha, \
     const DistMatrix<T>& A, \
     const DistMatrix<T,MC,  STAR>& B_MC_STAR, \
     const DistMatrix<T,STAR,MR  >& BTrans_STAR_MR, \
           DistMatrix<T,MC,  STAR>& Z_MC_STAR, \
           DistMatrix<T,MR,  STAR>& Z_MR_STAR ); \
-  template void symm::LocalAccumulateLU \
+  EL_EXTERN template void symm::LocalAccumulateLU \
   ( Orientation orientation, T alpha, \
     const DistMatrix<T>& A, \
     const DistMatrix<T,MC,  STAR>& B_MC_STAR, \
     const DistMatrix<T,STAR,MR  >& BTrans_STAR_MR, \
           DistMatrix<T,MC,  STAR>& Z_MC_STAR, \
           DistMatrix<T,MR,  STAR>& Z_MR_STAR ); \
-  template void symm::LocalAccumulateRL \
+  EL_EXTERN template void symm::LocalAccumulateRL \
   ( Orientation orientation, T alpha, \
     const DistMatrix<T>& A, \
     const DistMatrix<T,STAR,MC  >& B_STAR_MC, \
     const DistMatrix<T,MR,  STAR>& BTrans_MR_STAR, \
           DistMatrix<T,MC,  STAR>& ZTrans_MC_STAR, \
           DistMatrix<T,MR,  STAR>& ZTrans_MR_STAR ); \
-  template void symm::LocalAccumulateRU \
+  EL_EXTERN template void symm::LocalAccumulateRU \
   ( Orientation orientation, T alpha, \
     const DistMatrix<T,MC,  MR  >& A, \
     const DistMatrix<T,STAR,MC  >& B_STAR_MC, \
@@ -128,6 +134,7 @@ void Symm
 #define EL_ENABLE_BIGFLOAT
 #include "El/macros/Instantiate.h"
 
+#undef EL_EXTERN
 } // namespace El
 
 #endif /* EL_BLAS_LIKE_LEVEL3_SYMM_HPP */

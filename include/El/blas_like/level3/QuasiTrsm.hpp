@@ -205,16 +205,22 @@ void QuasiTrsm
             LogicError("This case not yet handled");
     }
 }
+#ifdef EL_INSTANTIATE_BLAS_LEVEL3
+# define EL_EXTERN
+#else
+# define EL_EXTERN extern
+#endif
+
 
 #define PROTO(F) \
-  template void QuasiTrsm \
+  EL_EXTERN template void QuasiTrsm \
   ( LeftOrRight side, UpperOrLower uplo, Orientation orientation, \
     F alpha, const Matrix<F>& A, Matrix<F>& B, bool checkIfSingular ); \
-  template void QuasiTrsm \
+  EL_EXTERN template void QuasiTrsm \
   ( LeftOrRight side, UpperOrLower uplo, Orientation orientation, \
     F alpha, const ElementalMatrix<F>& A, ElementalMatrix<F>& B, \
     bool checkIfSingular ); \
-  template void LocalQuasiTrsm \
+  EL_EXTERN template void LocalQuasiTrsm \
   ( LeftOrRight side, UpperOrLower uplo, Orientation orientation, \
     F alpha, const DistMatrix<F,STAR,STAR>& A, ElementalMatrix<F>& X, \
     bool checkIfSingular );
@@ -226,6 +232,7 @@ void QuasiTrsm
 #define EL_ENABLE_BIGFLOAT
 #include "El/macros/Instantiate.h"
 
+#undef EL_EXTERN
 } // namespace El
 
 #endif /* EL_BLAS_LIKE_LEVEL3_QUASITRSM_HPP */

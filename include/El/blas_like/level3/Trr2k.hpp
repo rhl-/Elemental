@@ -127,16 +127,22 @@ void Trr2k
         LogicError("Impossible subcase");
     }
 }
+#ifdef EL_INSTANTIATE_BLAS_LEVEL3
+# define EL_EXTERN
+#else
+# define EL_EXTERN extern
+#endif
+
 
 #define PROTO(T) \
-  template void Trr2k \
+  EL_EXTERN template void Trr2k \
   ( UpperOrLower uplo, \
     Orientation orientA, Orientation orientB, \
     Orientation orientC, Orientation orientD, \
     T alpha, const ElementalMatrix<T>& A, const ElementalMatrix<T>& B, \
     T beta,  const ElementalMatrix<T>& C, const ElementalMatrix<T>& D, \
     T gamma,       ElementalMatrix<T>& E ); \
-  template void LocalTrr2k \
+  EL_EXTERN template void LocalTrr2k \
   ( UpperOrLower uplo, \
     Orientation orientA, Orientation orientB, \
     Orientation orientC, Orientation orientD, \
@@ -151,6 +157,7 @@ void Trr2k
 #define EL_ENABLE_BIGFLOAT
 #include "El/macros/Instantiate.h"
 
+#undef EL_EXTERN
 } // namespace El
 
 #endif /* EL_BLAS_LIKE_LEVEL3_TRR2K_HPP */

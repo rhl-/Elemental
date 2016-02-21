@@ -130,18 +130,24 @@ void Trstrm
     ( side, uplo, orientation, diag,
       alpha, A.LockedMatrix(), X.Matrix(), checkIfSingular );
 }
+#ifdef EL_INSTANTIATE_BLAS_LEVEL3
+# define EL_EXTERN
+#else
+# define EL_EXTERN extern
+#endif
+
 
 #define PROTO(F) \
-  template void Trstrm \
+  EL_EXTERN template void Trstrm \
   ( LeftOrRight side, UpperOrLower uplo, \
     Orientation orientation, UnitOrNonUnit diag, \
     F alpha, const Matrix<F>& A, Matrix<F>& X, bool checkIfSingular ); \
-  template void Trstrm \
+  EL_EXTERN template void Trstrm \
   ( LeftOrRight side, UpperOrLower uplo, \
     Orientation orientation, UnitOrNonUnit diag, \
     F alpha, const ElementalMatrix<F>& A, ElementalMatrix<F>& X, \
     bool checkIfSingular ); \
-  template void Trstrm \
+  EL_EXTERN template void Trstrm \
   ( LeftOrRight side, UpperOrLower uplo, \
     Orientation orientation, UnitOrNonUnit diag, \
     F alpha, const DistMatrix<F,STAR,STAR>& A, DistMatrix<F,STAR,STAR>& X, \
@@ -154,6 +160,7 @@ void Trstrm
 #define EL_ENABLE_BIGFLOAT
 #include "El/macros/Instantiate.h"
 
+#undef EL_EXTERN
 } // namespace El
 
 #endif /* EL_BLAS_LIKE_LEVEL3_TRSTRM_HPP */

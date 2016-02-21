@@ -688,16 +688,22 @@ void Multiply
     if( time && commRank == 0 )
         Output("Multiply total time: ",totalTimer.Stop());
 }
+#ifdef EL_INSTANTIATE_BLAS_LEVEL3
+# define EL_EXTERN
+#else
+# define EL_EXTERN extern
+#endif
+
 
 #define PROTO(T) \
-    template void Multiply \
+    EL_EXTERN template void Multiply \
     ( Orientation orientation, \
             T alpha, \
       const SparseMatrix<T>& A, \
       const Matrix<T>& X, \
             T beta, \
             Matrix<T>& Y ); \
-    template void Multiply \
+    EL_EXTERN template void Multiply \
     ( Orientation orientation, \
             T alpha, \
       const DistSparseMatrix<T>& A, \
@@ -712,6 +718,7 @@ void Multiply
 #define EL_ENABLE_BIGFLOAT
 #include "El/macros/Instantiate.h"
 
+#undef EL_EXTERN
 } // namespace El
 
 #endif /* EL_BLAS_LIKE_LEVEL3_MULTIPLY_HPP */

@@ -106,17 +106,23 @@ void LocalTrmm
     Trmm
     ( side, uplo, orientation, diag, alpha, A.LockedMatrix(), B.Matrix() );
 }
+#ifdef EL_INSTANTIATE_BLAS_LEVEL3
+# define EL_EXTERN
+#else
+# define EL_EXTERN extern
+#endif
+
 
 #define PROTO(T) \
-  template void Trmm \
+  EL_EXTERN template void Trmm \
   ( LeftOrRight side, UpperOrLower uplo, \
     Orientation orientation, UnitOrNonUnit diag, \
     T alpha, const Matrix<T>& A, Matrix<T>& B ); \
-  template void Trmm \
+  EL_EXTERN template void Trmm \
   ( LeftOrRight side, UpperOrLower uplo, \
     Orientation orientation, UnitOrNonUnit diag, \
     T alpha, const ElementalMatrix<T>& A, ElementalMatrix<T>& B ); \
-  template void LocalTrmm \
+  EL_EXTERN template void LocalTrmm \
   ( LeftOrRight side, UpperOrLower uplo, \
     Orientation orientation, UnitOrNonUnit diag, \
     T alpha, const DistMatrix<T,STAR,STAR>& A, ElementalMatrix<T>& B );
@@ -128,6 +134,7 @@ void LocalTrmm
 #define EL_ENABLE_BIGFLOAT
 #include "El/macros/Instantiate.h"
 
+#undef EL_EXTERN
 } // namespace El
 
 #endif /* EL_BLAS_LIKE_LEVEL3_TRMM_HPP */

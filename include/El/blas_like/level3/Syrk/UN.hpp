@@ -1,3 +1,6 @@
+#ifndef EL_BLAS_LIKE_LEVEL3_SYRK_UN_HPP
+#define EL_BLAS_LIKE_LEVEL3_SYRK_UN_HPP
+
 /*
    Copyright (c) 2009-2016, Jack Poulson
    All rights reserved.
@@ -56,3 +59,5 @@ UN
 
 } // namespace syrk
 } // namespace El
+
+#endif /* EL_BLAS_LIKE_LEVEL3_SYRK_UN_HPP */

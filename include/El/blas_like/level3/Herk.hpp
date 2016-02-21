@@ -93,35 +93,41 @@ void Herk
     DEBUG_ONLY(CSE cse("Herk"))
     Syrk( uplo, orientation, T(alpha), A, C, true );
 }
+#ifdef EL_INSTANTIATE_BLAS_LEVEL3
+# define EL_EXTERN
+#else
+# define EL_EXTERN extern
+#endif
+
 
 #define PROTO(T) \
-  template void Herk \
+  EL_EXTERN template void Herk \
   ( UpperOrLower uplo, Orientation orientation, \
     Base<T> alpha, const Matrix<T>& A, \
     Base<T> beta,        Matrix<T>& C ); \
-  template void Herk \
+  EL_EXTERN template void Herk \
   ( UpperOrLower uplo, Orientation orientation, \
     Base<T> alpha, const Matrix<T>& A, Matrix<T>& C ); \
-  template void Herk \
+  EL_EXTERN template void Herk \
   ( UpperOrLower uplo, Orientation orientation, \
     Base<T> alpha, const ElementalMatrix<T>& A, ElementalMatrix<T>& C ); \
-  template void Herk \
+  EL_EXTERN template void Herk \
   ( UpperOrLower uplo, Orientation orientation, \
     Base<T> alpha, const ElementalMatrix<T>& A, \
     Base<T> beta,        ElementalMatrix<T>& C ); \
-  template void Herk \
+  EL_EXTERN template void Herk \
   ( UpperOrLower uplo, Orientation orientation, \
     Base<T> alpha, const SparseMatrix<T>& A, \
     Base<T> beta,        SparseMatrix<T>& C ); \
-  template void Herk \
+  EL_EXTERN template void Herk \
   ( UpperOrLower uplo, Orientation orientation, \
     Base<T> alpha, const SparseMatrix<T>& A, \
                          SparseMatrix<T>& C ); \
-  template void Herk \
+  EL_EXTERN template void Herk \
   ( UpperOrLower uplo, Orientation orientation, \
     Base<T> alpha, const DistSparseMatrix<T>& A, \
     Base<T> beta,        DistSparseMatrix<T>& C ); \
-  template void Herk \
+  EL_EXTERN template void Herk \
   ( UpperOrLower uplo, Orientation orientation, \
     Base<T> alpha, const DistSparseMatrix<T>& A, \
                          DistSparseMatrix<T>& C );
@@ -133,6 +139,7 @@ void Herk
 #define EL_ENABLE_BIGFLOAT
 #include "El/macros/Instantiate.h"
 
+#undef EL_EXTERN
 } // namespace El
 
 #endif /* EL_BLAS_LIKE_LEVEL3_HERK_HPP */

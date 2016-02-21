@@ -85,13 +85,19 @@ void NormalFromEVD
         LocalGemm( NORMAL, NORMAL, C(1), Z1_MC_STAR, Z1Adj_STAR_MR, C(1), A );
     }
 }
+#ifdef EL_INSTANTIATE_BLAS_LEVEL3
+# define EL_EXTERN
+#else
+# define EL_EXTERN extern
+#endif
+
 
 #define PROTO(Real) \
-  template void NormalFromEVD \
+  EL_EXTERN template void NormalFromEVD \
   (       Matrix<Complex<Real>>& A, \
     const Matrix<Complex<Real>>& w, \
     const Matrix<Complex<Real>>& Z ); \
-  template void NormalFromEVD \
+  EL_EXTERN template void NormalFromEVD \
   (       ElementalMatrix<Complex<Real>>& A, \
     const ElementalMatrix<Complex<Real>>& w, \
     const ElementalMatrix<Complex<Real>>& Z );
@@ -99,6 +105,7 @@ void NormalFromEVD
 #define EL_NO_INT_PROTO
 #define EL_NO_COMPLEX_PROTO
 #include "El/macros/Instantiate.h"
+#undef EL_EXTERN
 
 } // namespace El
 

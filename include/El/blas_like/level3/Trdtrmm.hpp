@@ -87,20 +87,26 @@ void Trdtrmm
 ( UpperOrLower uplo, DistMatrix<F,STAR,STAR>& A, 
   const DistMatrix<F,STAR,STAR>& dOff, bool conjugate )
 { Trdtrmm( uplo, A.Matrix(), dOff.LockedMatrix(), conjugate ); }
+#ifdef EL_INSTANTIATE_BLAS_LEVEL3
+# define EL_EXTERN
+#else
+# define EL_EXTERN extern
+#endif
+
 
 #define PROTO(F) \
-  template void Trdtrmm( UpperOrLower uplo, Matrix<F>& A, bool conjugate ); \
-  template void Trdtrmm \
+  EL_EXTERN template void Trdtrmm( UpperOrLower uplo, Matrix<F>& A, bool conjugate ); \
+  EL_EXTERN template void Trdtrmm \
   ( UpperOrLower uplo, Matrix<F>& A, const Matrix<F>& dOff, bool conjugate ); \
-  template void Trdtrmm \
+  EL_EXTERN template void Trdtrmm \
   ( UpperOrLower uplo, ElementalMatrix<F>& A, bool conjugate ); \
-  template void Trdtrmm \
+  EL_EXTERN template void Trdtrmm \
   ( UpperOrLower uplo, \
     ElementalMatrix<F>& A, const ElementalMatrix<F>& dOff, \
     bool conjugate ); \
-  template void Trdtrmm \
+  EL_EXTERN template void Trdtrmm \
   ( UpperOrLower uplo, DistMatrix<F,STAR,STAR>& A, bool conjugate ); \
-  template void Trdtrmm \
+  EL_EXTERN template void Trdtrmm \
   ( UpperOrLower uplo, DistMatrix<F,STAR,STAR>& A, \
     const DistMatrix<F,STAR,STAR>& dOff, bool conjugate );
 
@@ -110,6 +116,7 @@ void Trdtrmm
 #define EL_ENABLE_QUAD
 #define EL_ENABLE_BIGFLOAT
 #include "El/macros/Instantiate.h"
+#undef EL_EXTERN
 
 } // namespace El
 

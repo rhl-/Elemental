@@ -52,12 +52,18 @@ void MultiShiftTrsm
     else
         LogicError("This option is not yet supported");
 }
+#ifdef EL_INSTANTIATE_BLAS_LEVEL3
+# define EL_EXTERN
+#else
+# define EL_EXTERN extern
+#endif
+
 
 #define PROTO(F) \
-  template void MultiShiftTrsm \
+  EL_EXTERN template void MultiShiftTrsm \
   ( LeftOrRight side, UpperOrLower uplo, Orientation orientation, \
     F alpha, Matrix<F>& U, const Matrix<F>& shifts, Matrix<F>& X ); \
-  template void MultiShiftTrsm \
+  EL_EXTERN template void MultiShiftTrsm \
   ( LeftOrRight side, UpperOrLower uplo, Orientation orientation, \
     F alpha, const ElementalMatrix<F>& U, \
     const ElementalMatrix<F>& shifts, ElementalMatrix<F>& X );
@@ -69,6 +75,7 @@ void MultiShiftTrsm
 #define EL_ENABLE_BIGFLOAT
 #include "El/macros/Instantiate.h"
 
+#undef EL_EXTERN
 } // namespace El
 
 #endif /* EL_BLAS_LIKE_LEVEL3_MULTISHIFTTRSM_HPP */

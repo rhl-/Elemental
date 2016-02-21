@@ -399,9 +399,15 @@ void LocalMultiShiftQuasiTrsm
       alpha, A.LockedMatrix(), shifts.LockedMatrix(),
              XReal.Matrix(), XImag.Matrix() );
 }
+#ifdef EL_INSTANTIATE_BLAS_LEVEL3
+# define EL_EXTERN
+#else
+# define EL_EXTERN extern
+#endif
+
 
 #define PROTO(F) \
-  template void MultiShiftQuasiTrsm \
+  EL_EXTERN template void MultiShiftQuasiTrsm \
   ( LeftOrRight side, \
     UpperOrLower uplo, \
     Orientation orientation, \
@@ -409,7 +415,7 @@ void LocalMultiShiftQuasiTrsm
     const Matrix<F>& A, \
     const Matrix<F>& shifts, \
           Matrix<F>& B ); \
-  template void MultiShiftQuasiTrsm \
+  EL_EXTERN template void MultiShiftQuasiTrsm \
   ( LeftOrRight side, \
     UpperOrLower uplo, \
     Orientation orientation, \
@@ -417,7 +423,7 @@ void LocalMultiShiftQuasiTrsm
     const ElementalMatrix<F>& A, \
     const ElementalMatrix<F>& shifts, \
           ElementalMatrix<F>& B ); \
-  template void LocalMultiShiftQuasiTrsm \
+  EL_EXTERN template void LocalMultiShiftQuasiTrsm \
   ( LeftOrRight side, \
     UpperOrLower uplo, \
     Orientation orientation, \
@@ -428,7 +434,7 @@ void LocalMultiShiftQuasiTrsm
 
 #define PROTO_REAL(Real) \
   PROTO(Real) \
-  template void MultiShiftQuasiTrsm \
+  EL_EXTERN template void MultiShiftQuasiTrsm \
   ( LeftOrRight side, \
     UpperOrLower uplo, \
     Orientation orientation, \
@@ -437,7 +443,7 @@ void LocalMultiShiftQuasiTrsm
     const Matrix<Complex<Real>>& shifts, \
           Matrix<Real>& BReal, \
           Matrix<Real>& BImag ); \
-  template void MultiShiftQuasiTrsm \
+  EL_EXTERN template void MultiShiftQuasiTrsm \
   ( LeftOrRight side, \
     UpperOrLower uplo, \
     Orientation orientation, \
@@ -446,7 +452,7 @@ void LocalMultiShiftQuasiTrsm
     const ElementalMatrix<Complex<Real>>& shifts, \
           ElementalMatrix<Real>& BReal, \
           ElementalMatrix<Real>& BImag ); \
-  template void LocalMultiShiftQuasiTrsm \
+  EL_EXTERN template void LocalMultiShiftQuasiTrsm \
   ( LeftOrRight side, \
     UpperOrLower uplo, \
     Orientation orientation, \
@@ -467,6 +473,7 @@ void LocalMultiShiftQuasiTrsm
 #define EL_ENABLE_BIGFLOAT
 #include "El/macros/Instantiate.h"
 
+#undef EL_EXTERN
 } // namespace El
 
 #endif /* EL_BLAS_LIKE_LEVEL3_MULTISHIFTQUASITRSM_HPP */
