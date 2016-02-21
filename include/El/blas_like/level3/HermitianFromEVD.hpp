@@ -1,3 +1,6 @@
+#ifndef EL_BLAS_LIKE_LEVEL3_HERMITIANFROMEVD_HPP
+#define EL_BLAS_LIKE_LEVEL3_HERMITIANFROMEVD_HPP
+
 /*
    Copyright (c) 2009-2016, Jack Poulson
    All rights reserved.
@@ -111,3 +114,5 @@ void HermitianFromEVD
 #include "El/macros/Instantiate.h"
 
 } // namespace El
+
+#endif /* EL_BLAS_LIKE_LEVEL3_HERMITIANFROMEVD_HPP */

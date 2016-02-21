@@ -1,3 +1,6 @@
+#ifndef EL_BLAS_LIKE_LEVEL3_TRR2K_HPP
+#define EL_BLAS_LIKE_LEVEL3_TRR2K_HPP
+
 /*
    Copyright (c) 2009-2016, Jack Poulson
    All rights reserved.
@@ -149,3 +152,5 @@ void Trr2k
 #include "El/macros/Instantiate.h"
 
 } // namespace El
+
+#endif /* EL_BLAS_LIKE_LEVEL3_TRR2K_HPP */

@@ -1,3 +1,6 @@
+#ifndef EL_BLAS_LIKE_LEVEL3_TRTRMM_HPP
+#define EL_BLAS_LIKE_LEVEL3_TRTRMM_HPP
+
 /*
    Copyright (c) 2009-2016, Jack Poulson
    All rights reserved.
@@ -61,3 +64,5 @@ void Trtrmm( UpperOrLower uplo, DistMatrix<T,STAR,STAR>& A, bool conjugate )
 #include "El/macros/Instantiate.h"
 
 } // namespace El
+
+#endif /* EL_BLAS_LIKE_LEVEL3_TRTRMM_HPP */

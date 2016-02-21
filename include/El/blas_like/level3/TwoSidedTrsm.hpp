@@ -1,3 +1,6 @@
+#ifndef EL_BLAS_LIKE_LEVEL3_TWOSIDEDTRSM_HPP
+#define EL_BLAS_LIKE_LEVEL3_TWOSIDEDTRSM_HPP
+
 /*
    Copyright (c) 2009-2016, Jack Poulson
    All rights reserved.
@@ -121,3 +124,5 @@ void TwoSidedTrsm
 #include "El/macros/Instantiate.h"
 
 } // namespace El
+
+#endif /* EL_BLAS_LIKE_LEVEL3_TWOSIDEDTRSM_HPP */
