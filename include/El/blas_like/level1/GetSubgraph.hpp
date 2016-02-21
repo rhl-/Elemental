@@ -15,7 +15,7 @@ namespace El {
 
 // TODO: Avoid sorting since the ordering can easily be preserved
 
-void GetSubgraph
+inline void GetSubgraph
 ( const Graph& graph,
         Range<Int> I,
         Range<Int> J,
@@ -64,7 +64,7 @@ void GetSubgraph
     subgraph.ProcessQueues();
 }
 
-void GetSubgraph
+inline void GetSubgraph
 ( const Graph& graph,
         Range<Int> I,
   const vector<Int>& J,
@@ -75,7 +75,7 @@ void GetSubgraph
     LogicError("This routine is not yet written");
 }
 
-void GetSubgraph
+inline void GetSubgraph
 ( const Graph& graph,
   const vector<Int>& I,
         Range<Int> J,
@@ -86,7 +86,7 @@ void GetSubgraph
     LogicError("This routine is not yet written");
 }
 
-void GetSubgraph
+inline void GetSubgraph
 ( const Graph& graph,
   const vector<Int>& I,
   const vector<Int>& J,
@@ -97,7 +97,7 @@ void GetSubgraph
     LogicError("This routine is not yet written");
 }
 
-void GetSubgraph
+inline void GetSubgraph
 ( const DistGraph& graph,
         Range<Int> I,
         Range<Int> J,
@@ -167,7 +167,7 @@ void GetSubgraph
     subgraph.ProcessQueues();
 }
 
-void GetSubgraph
+inline void GetSubgraph
 ( const DistGraph& graph,
         Range<Int> I,
   const vector<Int>& J,
@@ -178,7 +178,7 @@ void GetSubgraph
     LogicError("This routine is not yet written");
 }
 
-void GetSubgraph
+inline void GetSubgraph
 ( const DistGraph& graph,
   const vector<Int>& I,
         Range<Int> J,
@@ -189,7 +189,7 @@ void GetSubgraph
     LogicError("This routine is not yet written");
 }
 
-void GetSubgraph
+inline void GetSubgraph
 ( const DistGraph& graph,
   const vector<Int>& I,
   const vector<Int>& J,

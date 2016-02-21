@@ -9,6 +9,7 @@
    which can be found in the LICENSE file in the root directory, or at 
    http://opensource.org/licenses/BSD-2-Clause
 */
+#include <El/matrices.hpp>
 #include "El.hpp"
 
 namespace El {
@@ -457,6 +458,7 @@ void ColumnTwoNorms
 #define EL_ENABLE_BIGFLOAT
 #include "El/macros/Instantiate.h"
 #undef EL_EXTERN
+#undef PROTO_DIST
 
 } // namespace El
 

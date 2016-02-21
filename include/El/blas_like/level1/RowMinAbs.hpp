@@ -250,7 +250,7 @@ void RowMinAbsNonzero
 #define EL_ENABLE_BIGFLOAT
 #include "El/macros/Instantiate.h"
 #undef EL_EXTERN
-
+#undef PROTO_DIST
 } // namespace El
 
 #endif /* EL_BLAS_LIKE_LEVEL1_ROWMINABS_CPP */

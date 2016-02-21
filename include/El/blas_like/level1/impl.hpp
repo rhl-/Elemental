@@ -63,5 +63,20 @@
 #include <El/blas_like/level1/UpdateMappedDiagonal.hpp>
 #include <El/blas_like/level1/UpdateSubmatrix.hpp>
 #include <El/blas_like/level1/Zero.hpp>
-
+#include <El/blas_like/level1/ColumnMinAbs.hpp>
+#include <El/blas_like/level1/ColumnNorms.hpp>
+#include <El/blas_like/level1/GetSubgraph.hpp>
+#include <El/blas_like/level1/HilbertSchmidt.hpp>
+#include <El/blas_like/level1/Instantiate.hpp>
+#include <El/blas_like/level1/Max.hpp>
+#include <El/blas_like/level1/MaxAbsLoc.hpp>
+#include <El/blas_like/level1/MaxLoc.hpp>
+#include <El/blas_like/level1/Min.hpp>
+#include <El/blas_like/level1/MinAbsLoc.hpp>
+#include <El/blas_like/level1/MinLoc.hpp>
+#include <El/blas_like/level1/RowMinAbs.hpp>
+#include <El/blas_like/level1/RowNorms.hpp>
+#include <El/blas_like/level1/Swap.hpp>
+#include <El/blas_like/level1/Symmetric2x2Inv.hpp>
+#include <El/blas_like/level1/Transform2x2.hpp>
 #endif // ifndef EL_BLAS1_IMPL_HPP

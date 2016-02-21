@@ -245,7 +245,7 @@ void RowMaxNorms( const DistSparseMatrix<F>& A, DistMultiVec<Base<F>>& norms )
 #define EL_ENABLE_BIGFLOAT
 #include "El/macros/Instantiate.h"
 #undef EL_EXTERN
-
+#undef PROTO_DIST
 } // namespace El
 
 #endif /* EL_BLAS_LIKE_LEVEL1_ROWNORMS_CPP */

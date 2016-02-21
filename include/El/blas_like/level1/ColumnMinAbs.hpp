@@ -9,6 +9,7 @@
    which can be found in the LICENSE file in the root directory, or at 
    http://opensource.org/licenses/BSD-2-Clause
 */
+#include <El/matrices.hpp>
 #include "El.hpp"
 
 namespace El {
@@ -348,6 +349,7 @@ void ColumnMinAbsNonzero
 #include "El/macros/Instantiate.h"
 
 #undef EL_EXTERN
+#undef PROTO_DIST
 } // namespace El
 
 #endif /* EL_BLAS_LIKE_LEVEL1_COLUMNMINABS_CPP */
