@@ -184,7 +184,7 @@ void Gemv
     gemv::ScaLAPACKHelper( orientation, alpha, A, x, beta, y );
 }
 
-template<>
+template<> inline
 void Gemv
 ( Orientation orientation,
   Int alpha, const DistMatrix<Int,MC,MR,BLOCK>& A,
@@ -196,7 +196,7 @@ void Gemv
 }
 
 #ifdef EL_HAVE_QUAD
-template<>
+template<> inline
 void Gemv
 ( Orientation orientation,
   Quad alpha, const DistMatrix<Quad,MC,MR,BLOCK>& A,
@@ -207,7 +207,7 @@ void Gemv
     LogicError("ScaLAPACK does not support quad-precision data");
 }
 
-template<>
+template<> inline
 void Gemv
 ( Orientation orientation,
   Complex<Quad> alpha, const DistMatrix<Complex<Quad>,MC,MR,BLOCK>& A,
