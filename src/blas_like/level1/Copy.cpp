@@ -1,3 +1,6 @@
+#ifndef EL_BLAS_LIKE_LEVEL1_COPY_CPP
+#define EL_BLAS_LIKE_LEVEL1_COPY_CPP
+
 /*
    Copyright (c) 2009-2016, Jack Poulson
    All rights reserved.
@@ -127,3 +130,5 @@ void CopyFromNonRoot( const DistGraph& distGraph, int root )
 }
 
 } // namespace El
+
+#endif /* EL_BLAS_LIKE_LEVEL1_COPY_CPP */

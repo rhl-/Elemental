@@ -1,3 +1,6 @@
+#ifndef EL_BLAS_LIKE_LEVEL1_MAX_CPP
+#define EL_BLAS_LIKE_LEVEL1_MAX_CPP
+
 /*
    Copyright (c) 2009-2016, Jack Poulson
    All rights reserved.
@@ -123,12 +126,18 @@ Real SymmetricMax( UpperOrLower uplo, const AbstractDistMatrix<Real>& A )
     mpi::Broadcast( value, A.Root(), A.CrossComm() );
     return value;
 }
+#ifdef EL_INSTANTIATE_BLAS_LEVEL1
+# define EL_EXTERN
+#else
+# define EL_EXTERN extern
+#endif
+
 
 #define PROTO(Real) \
-  template Real Max( const Matrix<Real>& x ); \
-  template Real Max( const AbstractDistMatrix<Real>& x ); \
-  template Real SymmetricMax( UpperOrLower uplo, const Matrix<Real>& A ); \
-  template Real SymmetricMax \
+  EL_EXTERN template Real Max( const Matrix<Real>& x ); \
+  EL_EXTERN template Real Max( const AbstractDistMatrix<Real>& x ); \
+  EL_EXTERN template Real SymmetricMax( UpperOrLower uplo, const Matrix<Real>& A ); \
+  EL_EXTERN template Real SymmetricMax \
   ( UpperOrLower uplo, const AbstractDistMatrix<Real>& A );
 
 #define EL_NO_COMPLEX_PROTO
@@ -138,5 +147,8 @@ Real SymmetricMax( UpperOrLower uplo, const AbstractDistMatrix<Real>& A )
 #define EL_ENABLE_BIGINT
 #define EL_ENABLE_BIGFLOAT
 #include "El/macros/Instantiate.h"
+#undef EL_EXTERN
 
 } // namespace El
+
+#endif /* EL_BLAS_LIKE_LEVEL1_MAX_CPP */

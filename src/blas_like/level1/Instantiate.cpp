@@ -1,3 +1,6 @@
+#ifndef EL_BLAS_LIKE_LEVEL1_INSTANTIATE_CPP
+#define EL_BLAS_LIKE_LEVEL1_INSTANTIATE_CPP
+
 /*
    Copyright (c) 2009-2016, Jack Poulson
    All rights reserved.
@@ -8,3 +11,5 @@
 */
 #define EL_INSTANTIATE_BLAS_LEVEL1
 #include "El.hpp"
+
+#endif /* EL_BLAS_LIKE_LEVEL1_INSTANTIATE_CPP */

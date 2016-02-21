@@ -1,3 +1,6 @@
+#ifndef EL_BLAS_LIKE_LEVEL1_MAXABSLOC_CPP
+#define EL_BLAS_LIKE_LEVEL1_MAXABSLOC_CPP
+
 /*
    Copyright (c) 2009-2016, Jack Poulson
    All rights reserved.
@@ -481,19 +484,25 @@ Entry<Base<T>> SymmetricMaxAbsLoc
     }
     return mpi::AllReduce( pivot, mpi::MaxLocPairOp<Real>(), A.Comm() );
 }
+#ifdef EL_INSTANTIATE_BLAS_LEVEL1
+# define EL_EXTERN
+#else
+# define EL_EXTERN extern
+#endif
+
 
 #define PROTO(T) \
-  template ValueInt<Base<T>> VectorMaxAbsLoc \
+  EL_EXTERN template ValueInt<Base<T>> VectorMaxAbsLoc \
   ( const Matrix<T>& x ); \
-  template ValueInt<Base<T>> VectorMaxAbsLoc \
+  EL_EXTERN template ValueInt<Base<T>> VectorMaxAbsLoc \
   ( const AbstractDistMatrix<T>& x ); \
-  template Entry<Base<T>> MaxAbsLoc( const Matrix<T>& x ); \
-  template Entry<Base<T>> MaxAbsLoc( const AbstractDistMatrix<T>& x ); \
-  template Entry<Base<T>> MaxAbsLoc( const SparseMatrix<T>& x ); \
-  template Entry<Base<T>> MaxAbsLoc( const DistSparseMatrix<T>& x ); \
-  template Entry<Base<T>> SymmetricMaxAbsLoc \
+  EL_EXTERN template Entry<Base<T>> MaxAbsLoc( const Matrix<T>& x ); \
+  EL_EXTERN template Entry<Base<T>> MaxAbsLoc( const AbstractDistMatrix<T>& x ); \
+  EL_EXTERN template Entry<Base<T>> MaxAbsLoc( const SparseMatrix<T>& x ); \
+  EL_EXTERN template Entry<Base<T>> MaxAbsLoc( const DistSparseMatrix<T>& x ); \
+  EL_EXTERN template Entry<Base<T>> SymmetricMaxAbsLoc \
   ( UpperOrLower uplo, const Matrix<T>& A ); \
-  template Entry<Base<T>> SymmetricMaxAbsLoc \
+  EL_EXTERN template Entry<Base<T>> SymmetricMaxAbsLoc \
   ( UpperOrLower uplo, const AbstractDistMatrix<T>& A ); \
   template Entry<Base<T>> SymmetricMaxAbsLoc \
   ( UpperOrLower uplo, const SparseMatrix<T>& x ); \
@@ -506,5 +515,8 @@ Entry<Base<T>> SymmetricMaxAbsLoc
 #define EL_ENABLE_BIGINT
 #define EL_ENABLE_BIGFLOAT
 #include "El/macros/Instantiate.h"
+#undef EL_EXTERN
 
 } // namespace El
+
+#endif /* EL_BLAS_LIKE_LEVEL1_MAXABSLOC_CPP */

@@ -1,3 +1,6 @@
+#ifndef EL_BLAS_LIKE_LEVEL1_HILBERTSCHMIDT_CPP
+#define EL_BLAS_LIKE_LEVEL1_HILBERTSCHMIDT_CPP
+
 /*
    Copyright (c) 2009-2016, Jack Poulson
    All rights reserved.
@@ -106,12 +109,18 @@ T HilbertSchmidt( const DistMultiVec<T>& A, const DistMultiVec<T>& B )
             localInnerProd += Conj(ABuf[iLoc+j*ALDim])*BBuf[iLoc+j*BLDim];
     return mpi::AllReduce( localInnerProd, A.Comm() );
 }
+#ifdef EL_INSTANTIATE_BLAS_LEVEL1
+# define EL_EXTERN
+#else
+# define EL_EXTERN extern
+#endif
+
 
 #define PROTO(T) \
-  template T HilbertSchmidt( const Matrix<T>& A, const Matrix<T>& B ); \
-  template T HilbertSchmidt \
+  EL_EXTERN template T HilbertSchmidt( const Matrix<T>& A, const Matrix<T>& B ); \
+  EL_EXTERN template T HilbertSchmidt \
   ( const ElementalMatrix<T>& A, const ElementalMatrix<T>& B ); \
-  template T HilbertSchmidt \
+  EL_EXTERN template T HilbertSchmidt \
   ( const DistMultiVec<T>& A, const DistMultiVec<T>& B );
 
 #define EL_ENABLE_DOUBLEDOUBLE
@@ -120,5 +129,8 @@ T HilbertSchmidt( const DistMultiVec<T>& A, const DistMultiVec<T>& B )
 #define EL_ENABLE_BIGINT
 #define EL_ENABLE_BIGFLOAT
 #include "El/macros/Instantiate.h"
+#undef EL_EXTERN
 
 } // namespace El
+
+#endif /* EL_BLAS_LIKE_LEVEL1_HILBERTSCHMIDT_CPP */

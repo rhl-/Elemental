@@ -1,3 +1,6 @@
+#ifndef EL_BLAS_LIKE_LEVEL1_ROWMINABS_CPP
+#define EL_BLAS_LIKE_LEVEL1_ROWMINABS_CPP
+
 /*
    Copyright (c) 2009-2016, Jack Poulson
    All rights reserved.
@@ -186,37 +189,43 @@ void RowMinAbsNonzero
         mins.SetLocal( iLoc, 0, rowMin ); 
     }
 }
+#ifdef EL_INSTANTIATE_BLAS_LEVEL1
+# define EL_EXTERN
+#else
+# define EL_EXTERN extern
+#endif
+
 
 #define PROTO_DIST(F,U,V) \
-  template void RowMinAbs \
+  EL_EXTERN template void RowMinAbs \
   ( const DistMatrix<F,U,V>& X, DistMatrix<Base<F>,U,STAR>& mins ); \
-  template void RowMinAbsNonzero \
+  EL_EXTERN template void RowMinAbsNonzero \
   ( const DistMatrix<F,U,V>& X, \
     const DistMatrix<Base<F>,U,STAR>& upperBounds, \
           DistMatrix<Base<F>,U,STAR>& mins );
 
 #define PROTO(F) \
-  template void RowMinAbs \
+  EL_EXTERN template void RowMinAbs \
   ( const Matrix<F>& X, Matrix<Base<F>>& mins ); \
-  template void RowMinAbsNonzero \
+  EL_EXTERN template void RowMinAbsNonzero \
   ( const Matrix<F>& X, \
     const Matrix<Base<F>>& upperBounds, \
           Matrix<Base<F>>& mins ); \
-  template void RowMinAbs \
+  EL_EXTERN template void RowMinAbs \
   ( const DistMultiVec<F>& X, DistMultiVec<Base<F>>& mins ); \
-  template void RowMinAbsNonzero \
+  EL_EXTERN template void RowMinAbsNonzero \
   ( const DistMultiVec<F>& X, \
     const DistMultiVec<Base<F>>& upperBounds, \
           DistMultiVec<Base<F>>& mins ); \
-  template void RowMinAbs \
+  EL_EXTERN template void RowMinAbs \
   ( const SparseMatrix<F>& A, Matrix<Base<F>>& mins ); \
-  template void RowMinAbsNonzero \
+  EL_EXTERN template void RowMinAbsNonzero \
   ( const SparseMatrix<F>& A, \
     const Matrix<Base<F>>& upperBounds, \
           Matrix<Base<F>>& mins ); \
-  template void RowMinAbs \
+  EL_EXTERN template void RowMinAbs \
   ( const DistSparseMatrix<F>& A, DistMultiVec<Base<F>>& mins ); \
-  template void RowMinAbsNonzero \
+  EL_EXTERN template void RowMinAbsNonzero \
   ( const DistSparseMatrix<F>& A, \
     const DistMultiVec<Base<F>>& upperBounds, \
           DistMultiVec<Base<F>>& mins ); \
@@ -240,5 +249,8 @@ void RowMinAbsNonzero
 #define EL_ENABLE_QUAD
 #define EL_ENABLE_BIGFLOAT
 #include "El/macros/Instantiate.h"
+#undef EL_EXTERN
 
 } // namespace El
+
+#endif /* EL_BLAS_LIKE_LEVEL1_ROWMINABS_CPP */

@@ -1,3 +1,6 @@
+#ifndef EL_BLAS_LIKE_LEVEL1_MINLOC_CPP
+#define EL_BLAS_LIKE_LEVEL1_MINLOC_CPP
+
 /*
    Copyright (c) 2009-2016, Jack Poulson
    All rights reserved.
@@ -317,16 +320,22 @@ SymmetricMinLoc( UpperOrLower uplo, const AbstractDistMatrix<Real>& A )
     mpi::Broadcast( pivot, A.Root(), A.CrossComm() );
     return pivot;
 }
+#ifdef EL_INSTANTIATE_BLAS_LEVEL1
+# define EL_EXTERN
+#else
+# define EL_EXTERN extern
+#endif
+
 
 #define PROTO(Real) \
-  template ValueInt<Real> VectorMinLoc( const Matrix<Real>& x ); \
-  template ValueInt<Real> VectorMinLoc( const AbstractDistMatrix<Real>& x ); \
-  template ValueInt<Real> VectorMinLoc( const DistMultiVec<Real>& x ); \
-  template Entry<Real> MinLoc( const Matrix<Real>& x ); \
-  template Entry<Real> MinLoc( const AbstractDistMatrix<Real>& x ); \
-  template Entry<Real> SymmetricMinLoc \
+  EL_EXTERN template ValueInt<Real> VectorMinLoc( const Matrix<Real>& x ); \
+  EL_EXTERN template ValueInt<Real> VectorMinLoc( const AbstractDistMatrix<Real>& x ); \
+  EL_EXTERN template ValueInt<Real> VectorMinLoc( const DistMultiVec<Real>& x ); \
+  EL_EXTERN template Entry<Real> MinLoc( const Matrix<Real>& x ); \
+  EL_EXTERN template Entry<Real> MinLoc( const AbstractDistMatrix<Real>& x ); \
+  EL_EXTERN template Entry<Real> SymmetricMinLoc \
   ( UpperOrLower uplo, const Matrix<Real>& A ); \
-  template Entry<Real> SymmetricMinLoc \
+  EL_EXTERN template Entry<Real> SymmetricMinLoc \
   ( UpperOrLower uplo, const AbstractDistMatrix<Real>& A );
 
 #define EL_NO_COMPLEX_PROTO
@@ -336,5 +345,8 @@ SymmetricMinLoc( UpperOrLower uplo, const AbstractDistMatrix<Real>& A )
 #define EL_ENABLE_BIGINT
 #define EL_ENABLE_BIGFLOAT
 #include "El/macros/Instantiate.h"
+#undef EL_EXTERN
 
 } // namespace El
+
+#endif /* EL_BLAS_LIKE_LEVEL1_MINLOC_CPP */

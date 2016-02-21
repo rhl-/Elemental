@@ -1,3 +1,6 @@
+#ifndef EL_BLAS_LIKE_LEVEL1_TRANSFORM2X2_CPP
+#define EL_BLAS_LIKE_LEVEL1_TRANSFORM2X2_CPP
+
 /*
    Copyright (c) 2009-2016, Jack Poulson
    All rights reserved.
@@ -222,26 +225,32 @@ void Transform2x2Cols
         blas::Axpy( mLoc, gamma21, buf.data(), 1, &ABuf[j2Loc*ALDim], 1 );
     }
 }
+#ifdef EL_INSTANTIATE_BLAS_LEVEL1
+# define EL_EXTERN
+#else
+# define EL_EXTERN extern
+#endif
+
 
 #define PROTO(T) \
-  template void Transform2x2 \
+  EL_EXTERN template void Transform2x2 \
   ( const Matrix<T>& G, \
           Matrix<T>& a1, \
           Matrix<T>& a2 ); \
-  template void Transform2x2 \
+  EL_EXTERN template void Transform2x2 \
   ( const AbstractDistMatrix<T>& G, \
           AbstractDistMatrix<T>& a1, \
           AbstractDistMatrix<T>& a2 ); \
-  template void Transform2x2Rows \
+  EL_EXTERN template void Transform2x2Rows \
   ( const Matrix<T>& G, \
           Matrix<T>& A, Int i1, Int i2 ); \
-  template void Transform2x2Rows \
+  EL_EXTERN template void Transform2x2Rows \
   ( const AbstractDistMatrix<T>& G, \
           AbstractDistMatrix<T>& A, Int i1, Int i2 ); \
-  template void Transform2x2Cols \
+  EL_EXTERN template void Transform2x2Cols \
   ( const Matrix<T>& G, \
           Matrix<T>& A, Int j1, Int j2 ); \
-  template void Transform2x2Cols \
+  EL_EXTERN template void Transform2x2Cols \
   ( const AbstractDistMatrix<T>& G, \
           AbstractDistMatrix<T>& A, Int j1, Int j2 );
 
@@ -251,5 +260,8 @@ void Transform2x2Cols
 #define EL_ENABLE_BIGINT
 #define EL_ENABLE_BIGFLOAT
 #include "El/macros/Instantiate.h"
+#undef EL_EXTERN
 
 } // namespace El
+
+#endif /* EL_BLAS_LIKE_LEVEL1_TRANSFORM2X2_CPP */

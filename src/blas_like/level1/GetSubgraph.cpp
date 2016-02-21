@@ -1,3 +1,6 @@
+#ifndef EL_BLAS_LIKE_LEVEL1_GETSUBGRAPH_CPP
+#define EL_BLAS_LIKE_LEVEL1_GETSUBGRAPH_CPP
+
 /*
    Copyright (c) 2009-2016, Jack Poulson
    All rights reserved.
@@ -198,3 +201,5 @@ void GetSubgraph
 }
 
 } // namespace El
+
+#endif /* EL_BLAS_LIKE_LEVEL1_GETSUBGRAPH_CPP */

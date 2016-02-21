@@ -1,3 +1,6 @@
+#ifndef EL_BLAS_LIKE_LEVEL1_ROWNORMS_CPP
+#define EL_BLAS_LIKE_LEVEL1_ROWNORMS_CPP
+
 /*
    Copyright (c) 2009-2016, Jack Poulson
    All rights reserved.
@@ -191,29 +194,35 @@ void RowMaxNorms( const DistSparseMatrix<F>& A, DistMultiVec<Base<F>>& norms )
         normBuf[iLoc] = rowMax;
     }
 }
+#ifdef EL_INSTANTIATE_BLAS_LEVEL1
+# define EL_EXTERN
+#else
+# define EL_EXTERN extern
+#endif
+
 
 #define PROTO_DIST(F,U,V) \
-  template void RowTwoNorms \
+  EL_EXTERN template void RowTwoNorms \
   ( const DistMatrix<F,U,V>& X, DistMatrix<Base<F>,U,STAR>& norms ); \
-  template void RowMaxNorms \
+  EL_EXTERN template void RowMaxNorms \
   ( const DistMatrix<F,U,V>& X, DistMatrix<Base<F>,U,STAR>& norms );
 
 #define PROTO(F) \
-  template void RowTwoNorms \
+  EL_EXTERN template void RowTwoNorms \
   ( const Matrix<F>& X, Matrix<Base<F>>& norms ); \
-  template void RowMaxNorms \
+  EL_EXTERN template void RowMaxNorms \
   ( const Matrix<F>& X, Matrix<Base<F>>& norms ); \
-  template void RowTwoNorms \
+  EL_EXTERN template void RowTwoNorms \
   ( const DistMultiVec<F>& X, DistMultiVec<Base<F>>& norms ); \
-  template void RowMaxNorms \
+  EL_EXTERN template void RowMaxNorms \
   ( const DistMultiVec<F>& X, DistMultiVec<Base<F>>& norms ); \
-  template void RowTwoNorms \
+  EL_EXTERN template void RowTwoNorms \
   ( const SparseMatrix<F>& A, Matrix<Base<F>>& norms ); \
-  template void RowMaxNorms \
+  EL_EXTERN template void RowMaxNorms \
   ( const SparseMatrix<F>& A, Matrix<Base<F>>& norms ); \
-  template void RowTwoNorms \
+  EL_EXTERN template void RowTwoNorms \
   ( const DistSparseMatrix<F>& A, DistMultiVec<Base<F>>& norms ); \
-  template void RowMaxNorms \
+  EL_EXTERN template void RowMaxNorms \
   ( const DistSparseMatrix<F>& A, DistMultiVec<Base<F>>& norms ); \
   PROTO_DIST(F,MC,  MR  ) \
   PROTO_DIST(F,MC,  STAR) \
@@ -235,5 +244,8 @@ void RowMaxNorms( const DistSparseMatrix<F>& A, DistMultiVec<Base<F>>& norms )
 #define EL_ENABLE_QUAD
 #define EL_ENABLE_BIGFLOAT
 #include "El/macros/Instantiate.h"
+#undef EL_EXTERN
 
 } // namespace El
+
+#endif /* EL_BLAS_LIKE_LEVEL1_ROWNORMS_CPP */

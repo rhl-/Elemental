@@ -1,3 +1,6 @@
+#ifndef EL_BLAS_LIKE_LEVEL1_MAXLOC_CPP
+#define EL_BLAS_LIKE_LEVEL1_MAXLOC_CPP
+
 /*
    Copyright (c) 2009-2016, Jack Poulson
    All rights reserved.
@@ -317,16 +320,22 @@ SymmetricMaxLoc( UpperOrLower uplo, const AbstractDistMatrix<Real>& A )
     mpi::Broadcast( pivot, A.Root(), A.CrossComm() );
     return pivot;
 }
+#ifdef EL_INSTANTIATE_BLAS_LEVEL1
+# define EL_EXTERN
+#else
+# define EL_EXTERN extern
+#endif
+
 
 #define PROTO(Real) \
-  template ValueInt<Real> VectorMaxLoc( const Matrix<Real>& x ); \
-  template ValueInt<Real> VectorMaxLoc( const AbstractDistMatrix<Real>& x ); \
-  template ValueInt<Real> VectorMaxLoc( const DistMultiVec<Real>& x ); \
-  template Entry<Real> MaxLoc( const Matrix<Real>& x ); \
-  template Entry<Real> MaxLoc( const AbstractDistMatrix<Real>& x ); \
-  template Entry<Real> SymmetricMaxLoc \
+  EL_EXTERN template ValueInt<Real> VectorMaxLoc( const Matrix<Real>& x ); \
+  EL_EXTERN template ValueInt<Real> VectorMaxLoc( const AbstractDistMatrix<Real>& x ); \
+  EL_EXTERN template ValueInt<Real> VectorMaxLoc( const DistMultiVec<Real>& x ); \
+  EL_EXTERN template Entry<Real> MaxLoc( const Matrix<Real>& x ); \
+  EL_EXTERN template Entry<Real> MaxLoc( const AbstractDistMatrix<Real>& x ); \
+  EL_EXTERN template Entry<Real> SymmetricMaxLoc \
   ( UpperOrLower uplo, const Matrix<Real>& A ); \
-  template Entry<Real> SymmetricMaxLoc \
+  EL_EXTERN template Entry<Real> SymmetricMaxLoc \
   ( UpperOrLower uplo, const AbstractDistMatrix<Real>& A );
 
 #define EL_NO_COMPLEX_PROTO
@@ -336,5 +345,8 @@ SymmetricMaxLoc( UpperOrLower uplo, const AbstractDistMatrix<Real>& A )
 #define EL_ENABLE_BIGINT
 #define EL_ENABLE_BIGFLOAT
 #include "El/macros/Instantiate.h"
+#undef EL_EXTERN
 
 } // namespace El
+
+#endif /* EL_BLAS_LIKE_LEVEL1_MAXLOC_CPP */

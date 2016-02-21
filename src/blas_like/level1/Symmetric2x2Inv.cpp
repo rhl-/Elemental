@@ -1,3 +1,6 @@
+#ifndef EL_BLAS_LIKE_LEVEL1_SYMMETRIC2X2INV_CPP
+#define EL_BLAS_LIKE_LEVEL1_SYMMETRIC2X2INV_CPP
+
 /*
    Copyright (c) 2009-2016, Jack Poulson
    All rights reserved.
@@ -49,9 +52,15 @@ void Symmetric2x2Inv( UpperOrLower uplo, Matrix<F>& D, bool conjugate )
     else
         LogicError("This option not yet supported");
 }
+#ifdef EL_INSTANTIATE_BLAS_LEVEL1
+# define EL_EXTERN
+#else
+# define EL_EXTERN extern
+#endif
+
 
 #define PROTO(F) \
-  template void Symmetric2x2Inv \
+  EL_EXTERN template void Symmetric2x2Inv \
   ( UpperOrLower uplo, Matrix<F>& A, bool conjugate );
 
 #define EL_NO_INT_PROTO
@@ -60,5 +69,8 @@ void Symmetric2x2Inv( UpperOrLower uplo, Matrix<F>& D, bool conjugate )
 #define EL_ENABLE_QUAD
 #define EL_ENABLE_BIGFLOAT
 #include "El/macros/Instantiate.h"
+#undef EL_EXTERN
 
 } // namespace El
+
+#endif /* EL_BLAS_LIKE_LEVEL1_SYMMETRIC2X2INV_CPP */

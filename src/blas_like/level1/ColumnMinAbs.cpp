@@ -1,3 +1,6 @@
+#ifndef EL_BLAS_LIKE_LEVEL1_COLUMNMINABS_CPP
+#define EL_BLAS_LIKE_LEVEL1_COLUMNMINABS_CPP
+
 /*
    Copyright (c) 2009-2016, Jack Poulson
    All rights reserved.
@@ -283,37 +286,43 @@ void ColumnMinAbsNonzero
         minBuf[iLoc] = Min(minBuf[iLoc],recvVals[s]);
     }
 }
+#ifdef EL_INSTANTIATE_BLAS_LEVEL1
+# define EL_EXTERN
+#else
+# define EL_EXTERN extern
+#endif
+
 
 #define PROTO_DIST(F,U,V) \
-  template void ColumnMinAbs \
+  EL_EXTERN template void ColumnMinAbs \
   ( const DistMatrix<F,U,V>& X, DistMatrix<Base<F>,V,STAR>& mins ); \
-  template void ColumnMinAbsNonzero \
+  EL_EXTERN template void ColumnMinAbsNonzero \
   ( const DistMatrix<F,U,V>& X, \
     const DistMatrix<Base<F>,V,STAR>& upperBounds, \
           DistMatrix<Base<F>,V,STAR>& mins );
 
 #define PROTO(F) \
-  template void ColumnMinAbs \
+  EL_EXTERN template void ColumnMinAbs \
   ( const Matrix<F>& X, Matrix<Base<F>>& mins ); \
-  template void ColumnMinAbsNonzero \
+  EL_EXTERN template void ColumnMinAbsNonzero \
   ( const Matrix<F>& X, \
     const Matrix<Base<F>>& upperBounds, \
           Matrix<Base<F>>& mins ); \
-  template void ColumnMinAbs \
+  EL_EXTERN template void ColumnMinAbs \
   ( const SparseMatrix<F>& A, Matrix<Base<F>>& mins ); \
-  template void ColumnMinAbsNonzero \
+  EL_EXTERN template void ColumnMinAbsNonzero \
   ( const SparseMatrix<F>& A, \
     const Matrix<Base<F>>& upperBounds, \
           Matrix<Base<F>>& mins ); \
-  template void ColumnMinAbs \
+  EL_EXTERN template void ColumnMinAbs \
   ( const DistSparseMatrix<F>& A, DistMultiVec<Base<F>>& mins ); \
-  template void ColumnMinAbsNonzero \
+  EL_EXTERN template void ColumnMinAbsNonzero \
   ( const DistSparseMatrix<F>& A, \
     const DistMultiVec<Base<F>>& upperBounds, \
           DistMultiVec<Base<F>>& mins ); \
-  template void ColumnMinAbs \
+  EL_EXTERN template void ColumnMinAbs \
   ( const DistMultiVec<F>& X, Matrix<Base<F>>& mins ); \
-  template void ColumnMinAbsNonzero \
+  EL_EXTERN template void ColumnMinAbsNonzero \
   ( const DistMultiVec<F>& X, \
     const Matrix<Base<F>>& upperBounds, \
           Matrix<Base<F>>& mins ); \
@@ -338,4 +347,7 @@ void ColumnMinAbsNonzero
 #define EL_ENABLE_BIGFLOAT
 #include "El/macros/Instantiate.h"
 
+#undef EL_EXTERN
 } // namespace El
+
+#endif /* EL_BLAS_LIKE_LEVEL1_COLUMNMINABS_CPP */

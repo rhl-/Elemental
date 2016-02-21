@@ -1,3 +1,6 @@
+#ifndef EL_BLAS_LIKE_LEVEL1_SWAP_CPP
+#define EL_BLAS_LIKE_LEVEL1_SWAP_CPP
+
 /*
    Copyright (c) 2009-2016, Jack Poulson
    All rights reserved.
@@ -458,24 +461,30 @@ void HermitianSwap
     DEBUG_ONLY(CSE cse("HermitianSwap"))
     SymmetricSwap( uplo, A, to, from, true );
 }
+#ifdef EL_INSTANTIATE_BLAS_LEVEL1
+# define EL_EXTERN
+#else
+# define EL_EXTERN extern
+#endif
+
 
 #define PROTO(T) \
-  template void Swap( Orientation orientation, Matrix<T>& X, Matrix<T>& Y ); \
-  template void Swap \
+  EL_EXTERN template void Swap( Orientation orientation, Matrix<T>& X, Matrix<T>& Y ); \
+  EL_EXTERN template void Swap \
   ( Orientation orientation, \
     AbstractDistMatrix<T>& X, AbstractDistMatrix<T>& Y ); \
-  template void RowSwap( Matrix<T>& A, Int to, Int from ); \
-  template void RowSwap( AbstractDistMatrix<T>& A, Int to, Int from ); \
-  template void ColSwap( Matrix<T>& A, Int to, Int from ); \
-  template void ColSwap( AbstractDistMatrix<T>& A, Int to, Int from ); \
-  template void SymmetricSwap \
+  EL_EXTERN template void RowSwap( Matrix<T>& A, Int to, Int from ); \
+  EL_EXTERN template void RowSwap( AbstractDistMatrix<T>& A, Int to, Int from ); \
+  EL_EXTERN template void ColSwap( Matrix<T>& A, Int to, Int from ); \
+  EL_EXTERN template void ColSwap( AbstractDistMatrix<T>& A, Int to, Int from ); \
+  EL_EXTERN template void SymmetricSwap \
   ( UpperOrLower uplo, Matrix<T>& A, Int to, Int from, bool conjugate ); \
-  template void SymmetricSwap \
+  EL_EXTERN template void SymmetricSwap \
   ( UpperOrLower uplo, AbstractDistMatrix<T>& A, Int to, Int from, \
     bool conjugate ); \
-  template void HermitianSwap \
+  EL_EXTERN template void HermitianSwap \
   ( UpperOrLower uplo, Matrix<T>& A, Int to, Int from ); \
-  template void HermitianSwap \
+  EL_EXTERN template void HermitianSwap \
   ( UpperOrLower uplo, AbstractDistMatrix<T>& A, Int to, Int from );
 
 #define EL_ENABLE_DOUBLEDOUBLE
@@ -484,5 +493,8 @@ void HermitianSwap
 #define EL_ENABLE_BIGINT
 #define EL_ENABLE_BIGFLOAT
 #include "El/macros/Instantiate.h"
+#undef EL_EXTERN
 
 } // namespace El
+
+#endif /* EL_BLAS_LIKE_LEVEL1_SWAP_CPP */
